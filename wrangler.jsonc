@@ -1,0 +1,34 @@
+
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "my-portfolio-site",
+	"account_id": "c4b7912534e20f5930f95120c46c11ee",
+	"main": "./src/worker.ts",
+	"compatibility_date": "2026-02-24",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "my-portfolio-site",
+			"database_id": "e37677a3-0860-4946-a455-6edecd7b4b1b",
+		},
+	],
+
+"kv_namespaces": [{"binding": "SESSION", "id": "792a4fe194434169b92b4c9d6a5a8803"}],
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "my-portfolio-media",
+		},
+	],
+
+"kv_namespaces": [{ "binding": "SESSION", "id": "792a4fe194434169b92b4c9d6a5a8803" }],
+	// Worker Loader for plugin sandboxing
+	"worker_loaders": [
+		{
+			"binding": "LOADER",
+		},
+	],
+}

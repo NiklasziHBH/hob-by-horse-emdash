@@ -1,0 +1,97 @@
+---
+interface Props {
+	title: string;
+	imgUrl?: string;
+	href: string;
+	tags?: string[];
+	color?: string;
+}
+
+const { title, imgUrl = "", href, tags = [], color = "#cccccc" } = Astro.props;
+
+const bgStyle = imgUrl
+	? `background-color:${color};background-image:url('${imgUrl}');background-size:cover;background-position:center;`
+	: `background-color:${color};`;
+---
+
+<article class="project-card">
+	<a href={href} class="card-link" style={bgStyle}>
+		<div class="card-overlay">
+			<h2 class="card-title">{title}</h2>
+			{tags.length > 0 && (
+				<div class="card-tags">
+					{tags.map((tag) => <span class="card-tag">{tag}</span>)}
+				</div>
+			)}
+		</div>
+	</a>
+</article>
+
+<style>
+	.project-card {
+		display: contents;
+	}
+
+	.card-link {
+		display: block;
+		position: relative;
+		overflow: hidden;
+		text-decoration: none;
+		aspect-ratio: 4 / 3;
+		width: 100%;
+		transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	}
+
+	.project-card:hover .card-link {
+		background-size: 106% !important;
+	}
+
+	/* Hover overlay */
+	.card-overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to top,
+			rgba(0, 0, 0, 0.78) 0%,
+			rgba(0, 0, 0, 0.25) 45%,
+			rgba(0, 0, 0, 0) 70%
+		);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		padding: 1.75rem 2rem;
+		opacity: 0;
+		transform: translateY(6px);
+		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+
+	.project-card:hover .card-overlay {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.card-title {
+		font-size: clamp(1rem, 2vw, 1.4rem);
+		font-weight: 700;
+		color: #ffffff;
+		line-height: 1.2;
+		margin-bottom: 0.5rem;
+	}
+
+	.card-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 5px;
+	}
+
+	.card-tag {
+		font-size: 0.68rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+		color: rgba(255, 255, 255, 0.85);
+		background: rgba(255, 255, 255, 0.12);
+		padding: 3px 8px;
+		border: 1px solid rgba(255, 255, 255, 0.22);
+	}
+</style>

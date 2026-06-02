@@ -1,0 +1,141 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+<Base title="Alpha Industries" description="Alpha Industries – Shopware 6 E-Commerce Projekt von Hob by Horse.">
+<div class="project-page">
+
+  <div class="hero-img">
+    <img src="/images/alphamu-3000x3000-1-1536x1536-1.webp" alt="Alpha Industries" />
+  </div>
+
+  <div class="content">
+    <h1>Alpha Industries</h1>
+
+    <div class="section">
+      <h4>Herausforderung</h4>
+      <p>Das Ziel war es, einen vollständig neuen Shopware-6-Shop zu entwickeln, der nicht nur den Anforderungen eines hoch individualisierten Frontends entspricht, sondern auch nahtlos über zahlreiche Schnittstellen mit anderen Systemen wie SAP, FactFinder, Kronos und Indigo (ERP) integriert ist. Zusätzlich sollte eine Verbindung zum physischen Store (POS) geschaffen werden, um eine ganzheitliche Lösung für Online- und Offline-Handel zu bieten.</p>
+    </div>
+
+    <div class="section">
+      <h4>Umsetzung</h4>
+      <p>Der neu entwickelte Shopware-6-Shop wurde mit einem maßgeschneiderten Frontend realisiert, das exakt den Vorstellungen des Kunden entspricht. Dabei wurden die Designs einer renommierten Designagentur ins Digitale übersetzt, aus UI- und UX-Perspektive überarbeitet und schließlich technisch umgesetzt. Besonderes Augenmerk lag auf der Benutzerfreundlichkeit und dem Design, um sowohl ästhetisch als auch funktional höchste Ansprüche zu erfüllen.</p>
+      <p>Ein Highlight ist der integrierte Editorial-Bereich, der es ermöglicht, redaktionelle Inhalte zu verwalten und dem Shop eine besondere Note zu verleihen. So wird der Shop nicht nur durch Produkte, sondern auch durch Inhalte, die den Markenkern stärken, bereichert.</p>
+      <p>Die Integration zahlreicher Schnittstellen sorgt für einen reibungslosen Austausch von Daten und Prozessen zwischen dem Shop und den angebundenen Systemen. Beispielsweise werden Produktdaten aus SAP importiert, intelligente Such- und Filterfunktionen mit FactFinder unterstützt und ERP-Prozesse über Indigo effizient verwaltet. Zudem wird eine Verbindung zum Retail-Analyse-Tool Kronos hergestellt, um Store-Verkäufe zu übermitteln und die Daten anzureichern.</p>
+      <p>Ein weiteres Highlight ist die nahtlose Verbindung zum Point-of-Sale (POS), die es ermöglicht, stationären und digitalen Handel optimal miteinander zu verknüpfen. Dadurch können Bestände, Verkäufe und Kundeninformationen in Echtzeit synchronisiert werden.</p>
+    </div>
+
+    <div class="section">
+      <h3>Leistungen</h3>
+      <p class="leistungen">Konzeption | Workshops | Programmierung | Schnittstellenanbindung | Betreuung</p>
+    </div>
+
+    <div class="section cta-section">
+      <h3>This shop is Hob by Horse!</h3>
+      <p>Wir beraten dich gerne persönlich!</p>
+      <a href="/contact" class="cta-btn">Kontakt aufnehmen</a>
+    </div>
+  </div>
+
+</div>
+</Base>
+
+<style>
+  .project-page {
+    background: #1a1a1a;
+    color: #ffffff;
+    min-height: 100vh;
+  }
+
+  .hero-img {
+    width: 100%;
+    padding-top: var(--header-height);
+    background: #0000CD;
+    
+    
+  }
+
+  .hero-img img {
+    width: 100%;
+    
+    object-fit: contain;
+    
+    display: block;
+  }
+
+  .content {
+    max-width: 800px;
+    margin: 0;
+    padding: var(--spacing-4xl) var(--spacing-xl) var(--spacing-4xl) 40px;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-3xl);
+    text-align: left;
+  }
+
+  .section {
+    margin-bottom: var(--spacing-3xl);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: var(--spacing-xl);
+  }
+
+  h4 {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #EAB308;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: #00b4d8;
+    margin-bottom: var(--spacing-md);
+    text-align: left !important;
+  }
+
+  p {
+    color: rgba(255,255,255,0.85);
+    line-height: 1.75;
+    margin-bottom: var(--spacing-md);
+    text-align: left !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .leistungen {
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.03em;
+  }
+
+  .cta-section h3 {
+    color: #E7007F;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-2xl);
+    background: #E7007F;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .cta-btn:hover { opacity: 0.85; }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 2rem; line-height: 1.2; }
+    .content { padding-left: var(--spacing-xl); }
+  }
+</style>

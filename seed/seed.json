@@ -1,0 +1,562 @@
+{
+	"$schema": "https://emdashcms.com/seed.schema.json",
+	"version": "1",
+	"meta": {
+		"name": "Hob by Horse",
+		"description": "Digital Experience Agency",
+		"author": "Hob by Horse GmbH"
+	},
+	"settings": {
+		"title": "Hob by Horse",
+		"tagline": "Digital Experience Agency"
+	},
+	"collections": [
+		{
+			"slug": "projects",
+			"label": "Projects",
+			"labelSingular": "Project",
+			"supports": ["drafts", "revisions", "search", "seo"],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "featured_image",
+					"label": "Featured Image",
+					"type": "image",
+					"required": true
+				},
+				{
+					"slug": "client",
+					"label": "Client",
+					"type": "string"
+				},
+				{
+					"slug": "year",
+					"label": "Year",
+					"type": "string"
+				},
+				{
+					"slug": "summary",
+					"label": "Summary",
+					"type": "text",
+					"searchable": true
+				},
+				{
+					"slug": "content",
+					"label": "Content",
+					"type": "portableText",
+					"searchable": true
+				},
+				{
+					"slug": "gallery",
+					"label": "Gallery",
+					"type": "json"
+				},
+				{
+					"slug": "url",
+					"label": "Project URL",
+					"type": "string"
+				}
+			]
+		},
+		{
+			"slug": "pages",
+			"label": "Pages",
+			"labelSingular": "Page",
+			"supports": ["drafts", "revisions", "search"],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "content",
+					"label": "Content",
+					"type": "portableText",
+					"searchable": true
+				}
+			]
+		}
+	],
+	"taxonomies": [
+		{
+			"name": "tag",
+			"label": "Tags",
+			"labelSingular": "Tag",
+			"hierarchical": false,
+			"collections": ["projects"],
+			"terms": [
+				{ "slug": "konzeption", "label": "Konzeption" },
+				{ "slug": "programmierung", "label": "Programmierung" },
+				{ "slug": "shopware-6", "label": "Shopware 6" },
+				{ "slug": "commerce", "label": "Commerce" },
+				{ "slug": "web", "label": "Web" },
+				{ "slug": "ui-design", "label": "UI Design" },
+				{ "slug": "headless", "label": "Headless" },
+				{ "slug": "pwa", "label": "PWA" },
+				{ "slug": "strategie", "label": "Strategie" }
+			]
+		}
+	],
+	"menus": [
+		{
+			"name": "primary",
+			"label": "Primary Navigation",
+			"items": [
+				{ "type": "custom", "label": "E-Commerce", "url": "/e-commerce" },
+				{ "type": "custom", "label": "Web / APIs", "url": "/work?tag=web" },
+				{ "type": "custom", "label": "Strategy", "url": "/strategy" },
+				{ "type": "custom", "label": "PIM", "url": "/pim" },
+				{ "type": "custom", "label": "Our Story", "url": "/about" },
+				{ "type": "custom", "label": "Contact us", "url": "/contact" },
+				{ "type": "custom", "label": "Jobs", "url": "/jobs" }
+			]
+		}
+	],
+	"content": {
+		"pages": [
+			{
+				"id": "about",
+				"slug": "about",
+				"status": "published",
+				"data": {
+					"title": "Our Story",
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Hob by Horse ist eine Digital Experience Agency mit Sitz in Hannover. Seit 2012 entwickeln wir maßgeschneiderte digitale Lösungen für Marken, die im E-Commerce, Web und strategischen Digital-Marketing wachsen wollen.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Unser Team aus Strategen, Designern und Entwicklern vereint kreative Exzellenz mit technischer Tiefe. Wir glauben, dass großartige digitale Produkte entstehen, wenn Ästhetik und Funktionalität Hand in Hand gehen.",
+									"_key": "k3"
+								}
+							],
+							"_key": "k2"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Was uns antreibt",
+									"_key": "k5"
+								}
+							],
+							"_key": "k4"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Wir sind Shopware Platinum Partner und spezialisiert auf anspruchsvolle E-Commerce-Projekte. Von der ersten Konzeption über UI Design bis hin zur technischen Umsetzung und dem laufenden Support — wir begleiten unsere Kunden durch den gesamten digitalen Lebenszyklus.",
+									"_key": "k7"
+								}
+							],
+							"_key": "k6"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Unsere Werte",
+									"_key": "k9"
+								}
+							],
+							"_key": "k8"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Ehrlichkeit, Qualität und Partnerschaft auf Augenhöhe — das sind die Grundsätze, nach denen wir arbeiten. Wir verstehen uns nicht als Dienstleister, sondern als strategische Partner unserer Kunden.",
+									"_key": "k11"
+								}
+							],
+							"_key": "k10"
+						}
+					]
+				}
+			}
+		],
+		"projects": [
+			{
+				"id": "alpha-industries",
+				"slug": "alpha-industries",
+				"status": "published",
+				"data": {
+					"title": "Alpha Industries",
+					"client": "Alpha Industries",
+					"year": "2024",
+					"summary": "Shopware 6 E-Commerce-Entwicklung für Alpha Industries mit maßgeschneiderten Features und optimierter Conversion.",
+					"featured_image": {
+						"$media": {
+							"url": "https://hob-by-horse.de/wp-content/uploads/2025/06/alphamu-3000x3000-1-1536x1536-1.webp",
+							"alt": "Alpha Industries",
+							"filename": "alpha-industries.webp"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Für Alpha Industries haben wir einen leistungsstarken Shopware 6 Shop konzipiert und entwickelt, der die Markenidentität des US-amerikanischen Kultlabels digital erlebbar macht.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				},
+				"taxonomies": {
+					"tag": ["konzeption", "programmierung", "shopware-6"]
+				}
+			},
+			{
+				"id": "coded-in-germany",
+				"slug": "coded-in-germany",
+				"status": "published",
+				"data": {
+					"title": "Coded in Germany",
+					"client": "Coded in Germany",
+					"year": "2025",
+					"summary": "Web-Präsenz und Commerce-Lösung für die Initiative Coded in Germany.",
+					"featured_image": {
+						"$media": {
+							"url": "https://hob-by-horse.de/wp-content/uploads/2025/09/Coded-In-Germany-1-scaled.png",
+							"alt": "Coded in Germany",
+							"filename": "coded-in-germany.png"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Für die Initiative Coded in Germany haben wir eine moderne Commerce-Plattform und Web-Präsenz entwickelt, die die Stärken des deutschen Software-Ökosystems sichtbar macht.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				},
+				"taxonomies": {
+					"tag": ["commerce", "web"]
+				}
+			},
+			{
+				"id": "bvb",
+				"slug": "bvb",
+				"status": "published",
+				"data": {
+					"title": "BVB",
+					"client": "Borussia Dortmund",
+					"year": "2024",
+					"summary": "Konzeption, Programmierung und UI Design für den BVB Online-Shop und digitale Plattform.",
+					"featured_image": {
+						"$media": {
+							"url": "https://hob-by-horse.de/wp-content/uploads/2025/08/bvbmu_new-scaled.jpg",
+							"alt": "BVB",
+							"filename": "bvb.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Für Borussia Dortmund haben wir eine vollständig neu konzipierte und entwickelte digitale Plattform realisiert — mit besonderem Fokus auf Fan-Experience und hohe Conversion-Rates.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				},
+				"taxonomies": {
+					"tag": ["konzeption", "programmierung", "ui-design"]
+				}
+			},
+			{
+				"id": "babor",
+				"slug": "babor",
+				"status": "published",
+				"data": {
+					"title": "Babor",
+					"client": "Babor Beauty",
+					"year": "2024",
+					"summary": "Konzeption und UI Design für die digitale Markenpräsenz von Babor.",
+					"featured_image": {
+						"$media": {
+							"url": "https://hob-by-horse.de/wp-content/uploads/2025/08/babormu_new-scaled.jpg",
+							"alt": "Babor",
+							"filename": "babor.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Für die Luxus-Kosmetikmarke Babor haben wir die digitale Strategie entwickelt und ein hochwertiges UI Design umgesetzt, das die Exklusivität der Marke online widerspiegelt.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				},
+				"taxonomies": {
+					"tag": ["konzeption", "ui-design"]
+				}
+			},
+			{
+				"id": "iris-von-arnim",
+				"slug": "iris-von-arnim",
+				"status": "published",
+				"data": {
+					"title": "Iris von Arnim",
+					"client": "Iris von Arnim",
+					"year": "2023",
+					"summary": "Shopware 6 Commerce-Lösung für das Luxus-Modehaus Iris von Arnim.",
+					"featured_image": {
+						"$media": {
+							"url": "https://hob-by-horse.de/wp-content/uploads/2025/08/Iris-Von-Arnim.jpg-scaled.jpg",
+							"alt": "Iris von Arnim",
+							"filename": "iris-von-arnim.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Für das hanseatische Luxusmodehaus Iris von Arnim haben wir einen exklusiven Shopware 6 Store realisiert, der die Handwerkskunst und Hochwertigkeit der Marke digital vermittelt.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				},
+				"taxonomies": {
+					"tag": ["commerce", "shopware-6"]
+				}
+			},
+			{
+				"id": "lavera",
+				"slug": "lavera",
+				"status": "published",
+				"data": {
+					"title": "Lavera",
+					"client": "Lavera Naturkosmetik",
+					"year": "2023",
+					"summary": "Shopware 6 Commerce-Plattform für die Naturkosmetik-Marke Lavera.",
+					"featured_image": {
+						"$media": {
+							"url": "https://hob-by-horse.de/wp-content/uploads/2025/08/Lavera-scaled.jpg",
+							"alt": "Lavera",
+							"filename": "lavera.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Für Lavera, Pionier der zertifizierten Naturkosmetik, haben wir eine leistungsfähige Shopware 6 Commerce-Plattform entwickelt, die den nachhaltigen Markenwerten gerecht wird.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				},
+				"taxonomies": {
+					"tag": ["commerce", "shopware-6"]
+				}
+			},
+			{
+				"id": "lt",
+				"slug": "lt",
+				"status": "published",
+				"data": {
+					"title": "L&T",
+					"client": "Lengermann & Trieschmann",
+					"year": "2024",
+					"summary": "Headless PWA E-Commerce mit Shopware 6 für das Osnabrücker Traditionshaus L&T.",
+					"featured_image": {
+						"$media": {
+							"url": "https://hob-by-horse.de/wp-content/uploads/2025/08/LT-2025.gif",
+							"alt": "L&T",
+							"filename": "lt.gif"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Für das Traditionshaus Lengermann & Trieschmann haben wir eine moderne Headless PWA auf Basis von Shopware 6 entwickelt — blitzschnell, mobil-optimiert und mit außergewöhnlicher User Experience.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				},
+				"taxonomies": {
+					"tag": ["headless", "pwa", "shopware-6"]
+				}
+			},
+			{
+				"id": "rasch",
+				"slug": "rasch",
+				"status": "published",
+				"data": {
+					"title": "Rasch GmbH",
+					"client": "Rasch GmbH & Co. KG",
+					"year": "2023",
+					"summary": "Konzeption und Shopware 6 Entwicklung für den Tapeten-Spezialisten Rasch.",
+					"featured_image": {
+						"$media": {
+							"url": "https://hob-by-horse.de/wp-content/uploads/2025/08/raschmu_new-scaled.jpg",
+							"alt": "Rasch GmbH",
+							"filename": "rasch.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Für Rasch, einen der führenden Tapetenhersteller Deutschlands, haben wir eine umfassende Shopware 6 Commerce-Lösung konzipiert und realisiert.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				},
+				"taxonomies": {
+					"tag": ["konzeption", "shopware-6"]
+				}
+			},
+			{
+				"id": "e3dc",
+				"slug": "e3dc",
+				"status": "published",
+				"data": {
+					"title": "E3DC",
+					"client": "E3DC GmbH",
+					"year": "2025",
+					"summary": "Headless Shopware 6 Commerce-Plattform für den Energiespeicher-Hersteller E3DC.",
+					"featured_image": {
+						"$media": {
+							"url": "https://hob-by-horse.de/wp-content/uploads/2025/08/E3DC_2025-scaled.jpg",
+							"alt": "E3DC",
+							"filename": "e3dc.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Für E3DC, Marktführer im Bereich Heimspeichersysteme, haben wir eine Headless Commerce-Plattform auf Basis von Shopware 6 entwickelt, die komplexe Produktkonfigurationen einfach und verständlich präsentiert.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				},
+				"taxonomies": {
+					"tag": ["headless", "shopware-6"]
+				}
+			},
+			{
+				"id": "bruno-banani",
+				"slug": "bruno-banani",
+				"status": "published",
+				"data": {
+					"title": "Bruno Banani",
+					"client": "Bruno Banani Underwear GmbH",
+					"year": "2025",
+					"summary": "Konzeption und Strategie für die digitale Transformation von Bruno Banani.",
+					"featured_image": {
+						"$media": {
+							"url": "https://hob-by-horse.de/wp-content/uploads/2025/08/BRUNO-BANANI_2025-scaled.jpg",
+							"alt": "Bruno Banani",
+							"filename": "bruno-banani.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Für Bruno Banani haben wir eine umfassende digitale Strategie entwickelt und die Konzeption für den nächsten Entwicklungsschritt der Marke im E-Commerce erarbeitet.",
+									"_key": "k1"
+								}
+							],
+							"_key": "k0"
+						}
+					]
+				},
+				"taxonomies": {
+					"tag": ["konzeption", "strategie"]
+				}
+			}
+		]
+	}
+}

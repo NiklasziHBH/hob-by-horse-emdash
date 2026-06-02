@@ -1,0 +1,45 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+<Base title="BVB" description="BVB – Konzeption, Programmierung & UI Design von Hob by Horse.">
+<div class="project-page">
+  <div class="hero-img"><img src="/images/bvbmu_new-scaled.jpg" alt="BVB" /></div>
+  <div class="content">
+    <h1>BVB</h1>
+    <div class="section">
+      <h4>Herausforderung</h4>
+      <p>Borussia Dortmund steht für Leidenschaft, Tradition und eine der loyalsten Fangemeinden weltweit. Die Herausforderung bestand darin, eine digitale Plattform zu schaffen, die diesen einzigartigen Markenwerten gerecht wird – performant, modern und mit einem Einkaufserlebnis, das die Fans begeistert.</p>
+    </div>
+    <div class="section">
+      <h4>Umsetzung</h4>
+      <p>Hob by Horse entwickelte eine vollständig neu konzipierte digitale Plattform für den BVB, die sowohl die Markenwerte des Vereins widerspiegelt als auch höchste technische Standards erfüllt. Die Konzeption berücksichtigte sowohl die emotionale Ebene – den Spirit des BVB – als auch funktionale Anforderungen wie hohe Lastspitzen bei Spieltagen oder neuen Merchandise-Drops.</p>
+      <p>Das UI Design wurde in enger Abstimmung mit dem Verein entwickelt und setzt auf die charakteristischen Gelb-Schwarz-Töne in Kombination mit modernen, cleanen Gestaltungselementen. Die technische Umsetzung erfolgte mit Shopware 6 und wurde durch individuelle Programmierungen für spezifische Fan-Features erweitert.</p>
+    </div>
+    <div class="section">
+      <h3>Leistungen</h3>
+      <p class="leistungen">Konzeption | Programmierung | UI Design | Shopware 6 | Betreuung</p>
+    </div>
+    <div class="section cta-section">
+      <h3>This shop is Hob by Horse!</h3>
+      <p>Wir beraten dich gerne persönlich!</p>
+      <a href="/contact" class="cta-btn">Kontakt aufnehmen</a>
+    </div>
+  </div>
+</div>
+</Base>
+<style>
+.project-page{background:#1a1a1a;color:#fff;min-height:100vh}
+.hero-img{width:100%;padding-top:var(--header-height);background:#FFD700}
+.hero-img img{object-fit:contain;max-height:600px;width:100%;display:block}
+.content{max-width:800px;margin:0;padding:var(--spacing-4xl) var(--spacing-xl) var(--spacing-4xl) 40px}
+h1{font-size:3rem;font-weight:800;color:#ffffff;line-height:1.1;margin-bottom:var(--spacing-3xl);text-align:left}
+.section{margin-bottom:var(--spacing-3xl);border-top:1px solid rgba(255,255,255,0.1);padding-top:var(--spacing-xl)}
+h4{font-size:var(--font-size-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:#EAB308;margin-bottom:var(--spacing-lg)}
+h3{font-size:var(--font-size-xl);font-weight:700;color:#00b4d8;margin-bottom:var(--spacing-md);text-align:left!important}
+p{color:rgba(255,255,255,0.85);line-height:1.75;margin-bottom:var(--spacing-md);text-align:left!important;max-width:none!important;margin-left:0!important;margin-right:0!important}
+.leistungen{font-weight:600;color:#ffffff;letter-spacing:0.03em}
+.cta-section h3{color:#E7007F}
+.cta-btn{display:inline-block;margin-top:var(--spacing-md);padding:var(--spacing-md) var(--spacing-2xl);background:#E7007F;color:#ffffff;font-weight:700;font-size:var(--font-size-sm);text-decoration:none}
+.cta-btn:hover{opacity:0.85}
+@media(max-width:768px){h1{font-size:2rem;line-height:1.2}.content{padding-left:var(--spacing-xl)}}
+</style>

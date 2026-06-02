@@ -1,0 +1,125 @@
+---
+import Base from "../../layouts/Base.astro";
+let formStatus: "idle" | "success" | "error" = "idle";
+let formMessage = "";
+if (Astro.request.method === "POST") {
+	try {
+		const data = await Astro.request.formData();
+		const n = data.get("name")?.toString()||"", e = data.get("email")?.toString()||"", m = data.get("message")?.toString()||"";
+		if (!n||!e||!m) { formStatus="error"; formMessage="Please fill in all fields."; }
+		else if (!e.includes("@")) { formStatus="error"; formMessage="Please enter a valid email address."; }
+		else { formStatus="success"; formMessage="Thank you! We'll be in touch soon."; }
+	} catch { formStatus="error"; formMessage="An error occurred."; }
+}
+---
+<Base title="Web / APIs" description="Be bold, be different, be digital — sophisticated digital systems and powerful APIs by Hob by Horse.">
+	<div class="web-page">
+		<section class="hero">
+			<div class="hero-inner">
+				<h1 class="hero-headline">Be bold, be different, be digital.</h1>
+				<p class="hero-body">That's why our teams don't just build simple websites, but smart, unique digital systems. Dynamic content? Automated landing page creation? AI-based image generation? No problem!</p>
+				<p class="hero-pink">We build powerful APIs that seamlessly connect systems, and develop flexible TYPO3 solutions that make your digital presence scalable and future-proof.</p>
+				<div class="hero-badges">
+					<img src="/images/shopusabilityaward-hob-by-horse.png" alt="Shop Usability Award" class="badge-img" loading="eager" />
+					<img src="/images/website-of-the-year-finalist-2014-bvb.png" alt="Website of the Year Finalist 2014" class="badge-img" loading="eager" />
+				</div>
+			</div>
+		</section>
+		<section class="leistungen-section">
+			<div class="leistungen-inner">
+				<h2 class="leistungen-headline">Our Services</h2>
+				<ul class="leistungen-list">
+					<li><a href="/en/web/conceptualization">Conception</a></li>
+					<li><a href="/en/web/user-interface-design">User Interface Design</a></li>
+					<li><a href="/en/web-apis/typo-3">TYPO3</a></li>
+					<li><a href="/en/web/interface-programming">Interface Programming</a></li>
+					<li><a href="/en/web-apis/dynamic-website-content">Dynamic Web Content</a></li>
+					<li><a href="/en/web-apis/automated-landing-page-creation">Automated Landing Page Creation</a></li>
+					<li><a href="/en/project-rescue">Project Recovery</a></li>
+					<li><a href="/en/project-takeover">Project Takeover</a></li>
+				</ul>
+			</div>
+		</section>
+		<section class="contact-section">
+			<div class="contact-inner">
+				<h2 class="contact-headline">Interested?</h2>
+				{formStatus === "success" ? <p class="form-success">{formMessage}</p> : (
+					<form method="POST" class="contact-form">
+						{formStatus === "error" && <p class="form-error">{formMessage}</p>}
+						<div class="form-row">
+							<input type="text" name="name" required placeholder="Name" />
+							<input type="email" name="email" required placeholder="Email address" />
+						</div>
+						<textarea name="message" required rows="5" placeholder="Message"></textarea>
+						<button type="submit" class="form-submit">Submit</button>
+					</form>
+				)}
+			</div>
+		</section>
+		<section class="seo-section">
+			<div class="seo-inner">
+				<h2 class="color-cyan">Web – Development and Process Control with Sophisticated Digital Systems</h2>
+				<p>Our specialty is developing websites for e-commerce. We work with Shopware 6 and other applications that exactly fit your development goals. This creates an online shop that reflects your company, sets you apart from competitors, and largely automates project management.</p>
+				<h2 class="color-pink">Your Complex Online Shop with Web Development from Hob by Horse</h2>
+				<p>E-commerce is market competition for the best positioning, the fastest response to customer movements, and a design with unique characteristics. We are your tool for developing digital systems tailored to your business model, equipped with professional teams and a full toolkit including Shopware 6.</p>
+				<h2 class="color-yellow">System Developments in Web for Online Shop Functionality</h2>
+				<ul>
+					<li><strong>Conception:</strong> An important part of the development strategy for your unique online shop.</li>
+					<li><strong>Interface Programming:</strong> With APIs we extend programming capabilities by connecting various features at the source code level.</li>
+					<li><strong>User Interface Design:</strong> Determines how well your online shop is visible to target groups and how logically it can be navigated.</li>
+					<li><strong>Dynamic Web Content:</strong> Page content automatically adapts to user signals without manual effort.</li>
+					<li><strong>TYPO3:</strong> This CMS adapts your web design for both desktop and mobile users.</li>
+					<li><strong>Automated Landing Page Creation:</strong> Small anchors on the web that help searchers find your online shop more easily.</li>
+					<li><strong>Project Recovery:</strong> We pick you up wherever you are, analyse the existing project, make changes, and guide your project to success.</li>
+					<li><strong>Project Takeover:</strong> We step into a running project and continue where the previous team left off.</li>
+					<li><strong>Web Support:</strong> The development of an online shop never ends. We remain your partner for updates, expansion, or complete redesign.</li>
+				</ul>
+				<h2 class="color-orange">Industries in Web Relevant to E-Commerce</h2>
+				<p>From fashion and lifestyle to machinery manufacturing, companies across all sectors establish online shops for their target groups. The secret is tools tailored to your specific business model. We are the experts who successfully present and position even smaller online shops.</p>
+				<h2 class="color-cyan">Precisely Reaching Target Groups with Hob by Horse Web Development</h2>
+				<p>Whether B2B, B2C, D2C, or B2G — each target group has specific expectations for ad format, content, and usability of your online shop. Want to position yourself as the best e-commerce option for your target group? Rely on the expertise of Hob by Horse!</p>
+			</div>
+		</section>
+	</div>
+</Base>
+<style>
+	.web-page { background: #1a1a1a; color: #ffffff; min-height: 100vh; }
+	.hero { padding-top: var(--header-height); border-bottom: 1px solid rgba(255,255,255,0.08); }
+	.hero-inner { max-width: 900px; margin: 0 auto; padding: var(--spacing-4xl) var(--spacing-xl); }
+	.hero-headline { font-size: clamp(2.2rem,4.5vw,3.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: #06B6D4; margin-bottom: var(--spacing-xl); }
+	.hero-body { font-size: var(--font-size-lg); color: #ffffff; line-height: 1.75; margin-bottom: var(--spacing-lg); }
+	.hero-pink { font-size: var(--font-size-lg); color: #E7007F; line-height: 1.75; margin-bottom: var(--spacing-2xl); font-weight: 500; }
+	.hero-badges { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: var(--spacing-xl); }
+	.badge-img { height: 160px; width: auto; object-fit: contain; display: block; flex-shrink: 0; }
+	.leistungen-section { border-bottom: 1px solid rgba(255,255,255,0.08); }
+	.leistungen-inner { max-width: var(--wide-width); margin: 0 auto; padding: var(--spacing-3xl) var(--spacing-xl); }
+	.leistungen-headline { font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #EAB308; margin-bottom: var(--spacing-xl); text-align: center; }
+	.leistungen-list { list-style: none; display: flex; flex-wrap: wrap; gap: 1px; background: rgba(255,255,255,0.06); }
+	.leistungen-list li { background: #1a1a1a; padding: var(--spacing-lg) var(--spacing-xl); font-size: var(--font-size-lg); font-weight: 600; color: #ffffff; flex: 1 0 200px; border: 1px solid rgba(255,255,255,0.06); }
+	.leistungen-list a { text-decoration: none; color: inherit; display: block; }
+	.contact-section { border-bottom: 1px solid rgba(255,255,255,0.08); }
+	.contact-inner { max-width: 720px; margin: 0 auto; padding: var(--spacing-3xl) var(--spacing-xl); }
+	.contact-headline { font-size: var(--font-size-2xl); font-weight: 700; color: #E7007F; margin-bottom: var(--spacing-2xl); }
+	.contact-form { display: flex; flex-direction: column; gap: var(--spacing-md); }
+	.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
+	.contact-form input, .contact-form textarea { padding: var(--spacing-md); font-family: inherit; font-size: var(--font-size-base); color: #ffffff; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); -webkit-appearance: none; }
+	.contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.35); }
+	.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: #06B6D4; }
+	.contact-form textarea { resize: vertical; min-height: 130px; }
+	.form-submit { align-self: flex-start; padding: var(--spacing-md) var(--spacing-2xl); font-family: inherit; font-size: var(--font-size-sm); font-weight: 700; color: #ffffff; background: #E7007F; border: none; cursor: pointer; }
+	.form-submit:hover { opacity: 0.85; }
+	.form-error { padding: var(--spacing-md); background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #fca5a5; font-size: var(--font-size-sm); }
+	.form-success { font-size: var(--font-size-lg); color: #06B6D4; padding: var(--spacing-xl) 0; }
+	.seo-section { border-top: 1px solid rgba(255,255,255,0.08); }
+	.seo-inner { max-width: var(--wide-width); margin: 0 auto; padding: var(--spacing-4xl) var(--spacing-xl); columns: 2; column-gap: 4rem; }
+	.seo-inner h2 { font-size: 1.0625rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; break-after: avoid; }
+	.seo-inner h2:first-child { margin-top: 0; }
+	.color-cyan { color: #06B6D4; } .color-pink { color: #E7007F; } .color-yellow { color: #EAB308; } .color-orange { color: #F97316; }
+	.seo-inner p { font-size: 0.9375rem; color: #ffffff; line-height: 1.75; margin-bottom: 1rem; }
+	.seo-inner ul { list-style: none; padding: 0; margin-bottom: 1rem; }
+	.seo-inner ul li { font-size: 0.9375rem; color: #ffffff; line-height: 1.7; padding-left: 1.25rem; position: relative; margin-bottom: 0.6rem; }
+	.seo-inner ul li::before { content: "#"; position: absolute; left: 0; color: #E7007F; font-weight: 700; }
+	.seo-inner ul li strong { color: #ffffff; }
+	@media (max-width: 1024px) { .seo-inner { columns: 1; } }
+	@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+</style>

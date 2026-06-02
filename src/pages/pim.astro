@@ -1,0 +1,311 @@
+---
+import Base from "../layouts/Base.astro";
+
+let formStatus: "idle" | "success" | "error" = "idle";
+let formMessage = "";
+
+if (Astro.request.method === "POST") {
+	try {
+		const data = await Astro.request.formData();
+		const name = data.get("name")?.toString() || "";
+		const email = data.get("email")?.toString() || "";
+		const message = data.get("message")?.toString() || "";
+		if (!name || !email || !message) {
+			formStatus = "error"; formMessage = "Bitte fülle alle Felder aus.";
+		} else if (!email.includes("@")) {
+			formStatus = "error"; formMessage = "Bitte gib eine gültige E-Mail-Adresse ein.";
+		} else {
+			formStatus = "success"; formMessage = "Danke! Wir melden uns in Kürze.";
+		}
+	} catch {
+		formStatus = "error"; formMessage = "Ein Fehler ist aufgetreten.";
+	}
+}
+---
+
+<Base
+	title="PIM"
+	description="Bessere Daten. Bessere Prozesse. Akeneo PIM-Implementierung von Hob by Horse."
+>
+	<div class="pim-page">
+
+		<!-- ── Hero ── -->
+		<section class="hero">
+			<div class="hero-inner">
+				<h1 class="hero-h1">Bessere Daten.<br />Bessere Prozesse!</h1>
+				<p class="hero-body">
+					Das ist unser Ziel, wenn es darum geht, dein Unternehmen mit klar strukturierten
+					und konsistenten Produktinformationen erfolgreich zu machen.
+				</p>
+				<p class="hero-sub">
+					Ob in deinem Online-Shop, auf Marktplätzen wie Amazon oder eBay oder in Katalogen
+					und B2B-Portalen – mit Akeneo PIM stellst du sicher, dass deine Produktdaten
+					zentral gepflegt, angereichert und fehlerfrei ausgespielt werden. Mit unserer
+					Expertise bringst du Ordnung in komplexe Datenlandschaften, verbesserst die
+					Kundenerfahrung und steigerst nachhaltig deine Verkaufszahlen.
+				</p>
+				<div class="hero-badges">
+					<img src="/images/Business-Implementation.png" alt="Akeneo Certified Business Implementation" class="badge-img" loading="eager" />
+				</div>
+			</div>
+		</section>
+
+		<!-- ── Leistungen ── -->
+		<section class="leistungen-section">
+			<div class="leistungen-inner">
+				<h2 class="leistungen-headline">Unsere Leistungen</h2>
+				<ul class="leistungen-list">
+					<li><a href="/pim/implementierung-setup">Implementierung &amp; Setup</a></li>
+					<li><a href="/pim/datenmigration-integration">Datenmigration &amp; Integration</a></li>
+					<li><a href="/pim/modellierung-strukturierung">Modellierung &amp; Strukturierung</a></li>
+					<li><a href="/pim/automatisierung-prozesse">Automatisierung &amp; Prozesse</a></li>
+					<li><a href="/pim/training-onboarding">Training &amp; Onboarding</a></li>
+					<li><a href="/pim/support-weiterentwicklung">Support &amp; Weiterentwicklung</a></li>
+					<li><a href="/pim/schnittstellen">Schnittstellen</a></li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- ── Interessiert? ── -->
+		<section class="contact-section">
+			<div class="contact-inner">
+				<h2 class="contact-headline">Interessiert?</h2>
+				{formStatus === "success" ? (
+					<p class="form-success">{formMessage}</p>
+				) : (
+					<form method="POST" class="contact-form">
+						{formStatus === "error" && <p class="form-error">{formMessage}</p>}
+						<div class="form-row">
+							<input type="text" name="name" required placeholder="Name" />
+							<input type="email" name="email" required placeholder="E-Mail-Adresse" />
+						</div>
+						<textarea name="message" required rows="5" placeholder="Nachricht"></textarea>
+						<button type="submit" class="form-submit">Absenden</button>
+					</form>
+				)}
+			</div>
+		</section>
+
+		<!-- ── SEO Text ── -->
+		<section class="seo-section">
+			<div class="seo-inner">
+
+				<h2 class="color-cyan">Bessere Daten. Bessere Prozesse!</h2>
+				<p>Das ist unser Ziel, wenn es darum geht, dein Unternehmen mit klar strukturierten und konsistenten Produktinformationen erfolgreich zu machen.</p>
+				<p>Ob in deinem Online-Shop, auf Marktplätzen wie Amazon oder eBay oder in Katalogen und B2B-Portalen – mit Akeneo PIM stellst du sicher, dass deine Produktdaten zentral gepflegt, angereichert und fehlerfrei ausgespielt werden. Mit unserer Expertise bringst du Ordnung in komplexe Datenlandschaften, verbesserst die Kundenerfahrung und steigerst nachhaltig deine Verkaufszahlen.</p>
+
+				<h2 class="color-pink">Akeneo PIM – das führende System für Produktinformations-Management</h2>
+				<p>Als zertifizierte Akeneo-Partner implementieren wir das führende PIM-System für mittelständische und große Unternehmen. Akeneo verbindet sich nahtlos mit Shopware 6, ERP-Systemen und Marktplätzen wie Amazon und eBay – und sorgt so für konsistente Produktdaten auf allen Kanälen.</p>
+				<p>Egal ob ihr eine Greenfield-Implementierung plant oder ein bestehendes System modernisieren wollt – wir begleiten euch vom ersten Workshop bis zum produktiven Betrieb und darüber hinaus.</p>
+
+				<h2 class="color-yellow">Unsere PIM-Leistungen im Überblick</h2>
+				<ul>
+					<li><strong>Implementierung &amp; Setup:</strong> Professionelle Einrichtung und Konfiguration von Akeneo PIM für eure spezifischen Anforderungen und Systemlandschaft.</li>
+					<li><strong>Datenmigration &amp; Integration:</strong> Saubere Migration bestehender Produktdaten aus Legacy-Systemen, ERP oder Excel – nahtlos verbunden mit Shopware 6 und Marktplätzen.</li>
+					<li><strong>Modellierung &amp; Strukturierung:</strong> Entwicklung eines durchdachten Datenmodells, das euer Produktsortiment optimal abbildet und zukünftiges Wachstum ermöglicht.</li>
+					<li><strong>Automatisierung &amp; Prozesse:</strong> Effiziente Workflows für Datenanreicherung, Übersetzungen, Qualitätsprüfungen und die automatisierte Ausspielung in alle relevanten Kanäle.</li>
+					<li><strong>Training &amp; Onboarding:</strong> Praxisnahe Schulungen für euer Team – damit das PIM-System nicht nur eingeführt, sondern täglich genutzt und gepflegt wird.</li>
+					<li><strong>Support &amp; Weiterentwicklung:</strong> Langfristige Begleitung nach dem Go-live, damit euer PIM mit eurem Unternehmen und euren Anforderungen wächst.</li>
+					<li><strong>Schnittstellen:</strong> Nahtlose Anbindung von Shopware 6, ERP, DAM, Marktplätzen und weiteren Systemen über stabile, dokumentierte APIs.</li>
+				</ul>
+
+				<h2 class="color-orange">Konsistente Produktdaten als Wettbewerbsvorteil</h2>
+				<p>Inkonsistente Produktdaten kosten Conversion. Falsche Beschreibungen erhöhen die Retourenquote. Fehlende Attribute verschlechtern Rankings auf Marktplätzen. Ein professionell implementiertes PIM-System löst diese Probleme an der Wurzel.</p>
+				<p>Mit Akeneo habt ihr eine zentrale Wahrheitsquelle für alle Produktinformationen – gepflegt einmal, ausgespielt überall. Das spart Zeit, reduziert Fehler und verbessert messbar die Customer Experience an jedem Touchpoint.</p>
+
+				<h2 class="color-purple">Unsere Kunden vertrauen auf Hob by Horse</h2>
+				<p>True Feed GmbH, Bruno Banani, BizLink Industry, The Aiconist, E3DC, Rasch GmbH, L&amp;T, Lavera Naturkosmetik, Iris von Arnim, Babor – diese und viele weitere Unternehmen nutzen unsere PIM-Expertise, um ihre Produktdaten in den Griff zu bekommen.</p>
+				<p>Sie möchten Ihre Produktdaten in Ordnung bringen und die Performance Ihres E-Commerce nachhaltig verbessern? Dann freut sich Hob by Horse auf Ihren Anruf oder Ihre E-Mail!</p>
+
+			</div>
+		</section>
+
+	</div>
+</Base>
+
+<style>
+	.pim-page {
+		background: #1a1a1a;
+		color: #ffffff;
+		min-height: 100vh;
+	}
+
+	.hero {
+		padding-top: var(--header-height);
+		border-bottom: 1px solid rgba(255,255,255,0.08);
+	}
+
+	.hero-inner {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: var(--spacing-4xl) var(--spacing-xl);
+	}
+
+	.hero-h1 {
+		font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+		font-weight: 800;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		color: #06B6D4;
+		margin-bottom: var(--spacing-xl);
+	}
+
+	.hero-body {
+		font-size: var(--font-size-lg);
+		color: #ffffff;
+		line-height: 1.75;
+		margin-bottom: var(--spacing-lg);
+		max-width: 720px;
+	}
+
+	.hero-sub {
+		font-size: var(--font-size-lg);
+		color: #ffffff;
+		line-height: 1.75;
+		max-width: 720px;
+	}
+
+	.hero-badges {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+		flex-wrap: wrap;
+		margin-top: var(--spacing-2xl);
+	}
+
+	.badge-img {
+		height: 160px;
+		width: auto;
+		object-fit: contain;
+		display: block;
+		flex-shrink: 0;
+	}
+
+	.leistungen-section { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+	.leistungen-inner {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-3xl) var(--spacing-xl);
+	}
+
+	.leistungen-headline {
+		font-size: 0.875rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		color: #EAB308;
+		margin-bottom: var(--spacing-xl);
+		text-align: center;
+	}
+
+	.leistungen-list {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1px;
+		background: rgba(255,255,255,0.06);
+	}
+
+	.leistungen-list li {
+		background: #1a1a1a;
+		padding: var(--spacing-lg) var(--spacing-xl);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		color: #ffffff;
+		flex: 1 0 200px;
+		border: 1px solid rgba(255,255,255,0.06);
+		transition: background var(--transition-fast), color var(--transition-fast);
+	}
+
+	.leistungen-list li:hover { background: rgba(255,255,255,0.06); color: #06B6D4; }
+	.leistungen-list a { text-decoration: none; color: inherit; display: block; }
+
+	.contact-section { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+	.contact-inner { max-width: 720px; margin: 0 auto; padding: var(--spacing-3xl) var(--spacing-xl); }
+
+	.contact-headline { font-size: var(--font-size-2xl); font-weight: 700; color: #E7007F; margin-bottom: var(--spacing-2xl); }
+
+	.contact-form { display: flex; flex-direction: column; gap: var(--spacing-md); }
+
+	.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
+
+	.contact-form input,
+	.contact-form textarea {
+		padding: var(--spacing-md);
+		font-family: inherit;
+		font-size: var(--font-size-base);
+		color: #ffffff;
+		background: rgba(255,255,255,0.06);
+		border: 1px solid rgba(255,255,255,0.12);
+		transition: border-color var(--transition-fast);
+		-webkit-appearance: none;
+	}
+
+	.contact-form input::placeholder,
+	.contact-form textarea::placeholder { color: #ffffff; }
+
+	.contact-form input:focus,
+	.contact-form textarea:focus { outline: none; border-color: #06B6D4; }
+
+	.contact-form textarea { resize: vertical; min-height: 130px; }
+
+	.form-submit {
+		align-self: flex-start;
+		padding: var(--spacing-md) var(--spacing-2xl);
+		font-family: inherit;
+		font-size: var(--font-size-sm);
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		color: #ffffff;
+		background: #E7007F;
+		border: none;
+		cursor: pointer;
+		transition: opacity var(--transition-fast);
+	}
+
+	.form-submit:hover { opacity: 0.85; }
+
+	.form-error { padding: var(--spacing-md); background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #fca5a5; font-size: var(--font-size-sm); }
+	.form-success { font-size: var(--font-size-lg); color: #06B6D4; padding: var(--spacing-xl) 0; }
+
+	.seo-section { border-top: 1px solid rgba(255,255,255,0.08); }
+
+	.seo-inner {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-4xl) var(--spacing-xl);
+		columns: 2;
+		column-gap: 4rem;
+	}
+
+	.seo-inner h2 { font-size: 1.0625rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; break-after: avoid; line-height: 1.35; }
+	.seo-inner h2:first-child { margin-top: 0; }
+
+	.color-cyan   { color: #06B6D4; }
+	.color-pink   { color: #E7007F; }
+	.color-yellow { color: #EAB308; }
+	.color-orange { color: #F97316; }
+	.color-purple { color: #A855F7; }
+
+	.seo-inner p { font-size: 0.9375rem; color: #ffffff; line-height: 1.75; margin-bottom: 1rem; }
+
+	.seo-inner ul { list-style: none; padding: 0; margin-bottom: 1rem; }
+
+	.seo-inner ul li {
+		font-size: 0.9375rem;
+		color: #ffffff;
+		line-height: 1.7;
+		padding-left: 1.25rem;
+		position: relative;
+		margin-bottom: 0.6rem;
+	}
+
+	.seo-inner ul li::before { content: "#"; position: absolute; left: 0; color: #E7007F; font-weight: 700; }
+	.seo-inner ul li strong { color: #ffffff; }
+
+	@media (max-width: 1024px) { .seo-inner { columns: 1; } }
+	@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+</style>

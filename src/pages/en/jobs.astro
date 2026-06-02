@@ -1,0 +1,73 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+<Base title="Jobs" description="Careers at Hob by Horse — we're looking. Our team looks forward to meeting you!">
+	<div class="jobs-page">
+		<section class="hero">
+			<div class="hero-inner">
+				<p class="kicker">Jobs — Open Positions</p>
+				<h1 class="hero-h1">We're looking.<br />Our team looks forward to you!</h1>
+				<p class="hero-body">Hob by Horse is a growing digital agency with locations in Hamburg and Osnabrück. We develop e-commerce solutions, web applications, digital strategies and PIM systems for well-known clients.</p>
+			</div>
+		</section>
+		<section class="positions-section">
+			<div class="positions-inner">
+				<h2 class="positions-headline">Open Positions</h2>
+				<div class="position-list">
+					<div class="position"><div class="position-info"><h3><a href="/en/jobs/apprenticeship-marketing-communications" class="position-title-link">Apprenticeship — Marketing Communications (m/f/d)</a></h3><span class="position-meta">Apprenticeship · Osnabrück</span></div><a href="/en/jobs/apprenticeship-marketing-communications" class="position-apply">Apply now</a></div>
+					<div class="position"><div class="position-info"><h3><a href="/en/jobs/shopware-developer-frontend" class="position-title-link">Shopware Frontend Developer (m/f/d)</a></h3><span class="position-meta">Full-time · Hamburg / Osnabrück / Remote</span></div><a href="/en/jobs/shopware-developer-frontend" class="position-apply">Apply now</a></div>
+					<div class="position"><div class="position-info"><h3><a href="/en/jobs/senior-shopware-frontend-developer" class="position-title-link">Senior Shopware Frontend Developer (m/f/d)</a></h3><span class="position-meta">Full-time · Hamburg / Osnabrück / Remote</span></div><a href="/en/jobs/senior-shopware-frontend-developer" class="position-apply">Apply now</a></div>
+					<div class="position"><div class="position-info"><h3>Unsolicited Application</h3><span class="position-meta">All roles · Open</span></div><a href="mailto:jobs@hob-by-horse.de?subject=Unsolicited Application" class="position-apply">Apply now</a></div>
+				</div>
+			</div>
+		</section>
+		<section class="seo-section">
+			<div class="seo-inner">
+				<h2 class="color-cyan">Careers at Hob by Horse – digital. creative. ambitious.</h2>
+				<p>Hob by Horse is a growing digital agency with locations in Hamburg and Osnabrück. We develop e-commerce solutions, web applications, digital strategies and PIM systems for well-known clients including Alpha Industries, BVB, Babor, Lavera and many more.</p>
+				<h2 class="color-pink">We're looking. Our team looks forward to you!</h2>
+				<p>At Hob by Horse you work on real projects with real impact. Flat hierarchies, direct communication and personal responsibility are not promises in a job profile — they are lived practice.</p>
+				<h2 class="color-yellow">Open Positions at a Glance</h2>
+				<ul>
+					<li><strong>Marketing Communications Apprenticeship:</strong> Start your career in the digital world — at one of the most exciting e-commerce service providers in the German SME sector.</li>
+					<li><strong>Shopware Frontend Developer:</strong> You know Shopware 6, love clean code, and want to build really great shops in an agile team.</li>
+					<li><strong>Senior Shopware Frontend Developer:</strong> You bring several years of Shopware experience and want to shape projects technically — then you're exactly right for us.</li>
+				</ul>
+				<h2 class="color-orange">Why Hob by Horse?</h2>
+				<p>Exciting clients and projects, real creative freedom, a growing team and two locations — Hamburg and Osnabrück. Plus flexible working hours and remote possibilities. We take our work seriously, ourselves less so. Open, respectful interaction is not just a phrase for us.</p>
+				<h2 class="color-purple">No suitable position?</h2>
+				<p>We welcome unsolicited applications! Write to us at <a href="mailto:jobs@hob-by-horse.de">jobs@hob-by-horse.de</a> and tell us what you can do and what drives you.</p>
+			</div>
+		</section>
+	</div>
+</Base>
+<style>
+	.jobs-page { background: #1a1a1a; color: #ffffff; min-height: 100vh; }
+	.hero { padding-top: var(--header-height); border-bottom: 1px solid rgba(255,255,255,0.08); }
+	.hero-inner { max-width: 900px; margin: 0 auto; padding: var(--spacing-4xl) var(--spacing-xl); }
+	.hero-h1 { font-size: clamp(2.2rem,4.5vw,3.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: #06B6D4; margin-bottom: var(--spacing-xl); }
+	.hero-body { font-size: var(--font-size-lg); color: #ffffff; line-height: 1.75; max-width: 720px; }
+	.positions-section { border-bottom: 1px solid rgba(255,255,255,0.08); }
+	.positions-inner { max-width: var(--wide-width); margin: 0 auto; padding: var(--spacing-3xl) var(--spacing-xl); }
+	.positions-headline { font-size: var(--font-size-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #EAB308; margin-bottom: var(--spacing-xl); }
+	.position-list { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.1); }
+	.position { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-xl); padding: var(--spacing-xl) 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+	.position-info h3 { font-size: var(--font-size-lg); font-weight: 700; color: #ffffff; margin-bottom: 4px; }
+	.position-meta { font-size: var(--font-size-sm); color: rgba(255,255,255,0.5); }
+	.position-apply { display: inline-block; padding: var(--spacing-sm) var(--spacing-xl); background: #E7007F; color: #ffffff; font-size: var(--font-size-sm); font-weight: 700; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+	.position-apply:hover { opacity: 0.85; }
+	.position-title-link { text-decoration: none; color: inherit; }
+	.seo-section { border-top: 1px solid rgba(255,255,255,0.08); }
+	.seo-inner { max-width: var(--wide-width); margin: 0 auto; padding: var(--spacing-4xl) var(--spacing-xl); columns: 2; column-gap: 4rem; }
+	.seo-inner h2 { font-size: 1.0625rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; break-after: avoid; }
+	.seo-inner h2:first-child { margin-top: 0; }
+	.color-cyan { color: #06B6D4; } .color-pink { color: #E7007F; } .color-yellow { color: #EAB308; } .color-orange { color: #F97316; } .color-purple { color: #A855F7; }
+	.seo-inner p { font-size: 0.9375rem; color: #ffffff; line-height: 1.75; margin-bottom: 1rem; }
+	.seo-inner a { color: #06B6D4; }
+	.seo-inner ul { list-style: none; padding: 0; margin-bottom: 1rem; }
+	.seo-inner ul li { font-size: 0.9375rem; color: #ffffff; line-height: 1.7; padding-left: 1.25rem; position: relative; margin-bottom: 0.6rem; }
+	.seo-inner ul li::before { content: "#"; position: absolute; left: 0; color: #E7007F; font-weight: 700; }
+	.seo-inner ul li strong { color: #ffffff; }
+	@media (max-width: 1024px) { .seo-inner { columns: 1; } }
+	@media (max-width: 640px) { .position { flex-direction: column; align-items: flex-start; } }
+</style>

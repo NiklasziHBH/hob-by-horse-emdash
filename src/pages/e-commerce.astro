@@ -1,0 +1,291 @@
+---
+import Base from "../layouts/Base.astro";
+
+let formStatus: "idle" | "success" | "error" = "idle";
+let formMessage = "";
+
+if (Astro.request.method === "POST") {
+	try {
+		const data = await Astro.request.formData();
+		const name = data.get("name")?.toString() || "";
+		const email = data.get("email")?.toString() || "";
+		const message = data.get("message")?.toString() || "";
+		if (!name || !email || !message) {
+			formStatus = "error"; formMessage = "Bitte fülle alle Felder aus.";
+		} else if (!email.includes("@")) {
+			formStatus = "error"; formMessage = "Bitte gib eine gültige E-Mail-Adresse ein.";
+		} else {
+			formStatus = "success"; formMessage = "Danke! Wir melden uns in Kürze.";
+		}
+	} catch {
+		formStatus = "error"; formMessage = "Ein Fehler ist aufgetreten.";
+	}
+}
+---
+
+<Base
+	title="E-Commerce"
+	description="E-Commerce ist unsere Leidenschaft — Shopware 6, Headless Commerce und einzigartige Onlineerlebnisse von Hob by Horse."
+>
+	<div class="ecommerce-page">
+
+		<!-- ── Hero ── -->
+		<section class="hero">
+			<div class="hero-inner">
+				<h1 class="hero-h1">E-Commerce ist<br />unsere Leidenschaft!</h1>
+				<p class="hero-body">
+					Deshalb entwickeln wir mit unseren Kunden gemeinsam einzigartige Onlineerlebnisse
+					zur Erreichung unserer Conversionziele.
+				</p>
+				<p class="hero-sub">Hierbei setzen wir auf das Shopsystem Shopware 6.</p>
+				<div class="hero-badges">
+					<img src="/images/platinpartner-shopware.png" alt="Shopware Platinum Partner" class="badge-img" loading="eager" />
+					<img src="/images/sw6-advanced-developer.png" alt="Shopware 6 Certified Advanced Developer" class="badge-img" loading="eager" />
+					<img src="/images/sw6-template-designer.png" alt="Shopware 6 Certified Template Designer" class="badge-img" loading="eager" />
+					<img src="/images/sw6-developer.png" alt="Shopware 6 Certified Developer" class="badge-img" loading="eager" />
+				</div>
+			</div>
+		</section>
+
+		<!-- ── Leistungen ── -->
+		<section class="leistungen-section">
+			<div class="leistungen-inner">
+				<h2 class="leistungen-headline">Unsere Leistungen</h2>
+				<ul class="leistungen-list">
+					<li><a href="/e-commerce/konzeption">Konzeption</a></li>
+					<li><a href="/e-commerce/user-interface-design">User Interface Design</a></li>
+					<li><a href="/e-commerce/shopware">Shopware</a></li>
+					<li><a href="/e-commerce/support">Support</a></li>
+					<li><a href="/e-commerce/headless-e-commerce">Headless E-Commerce</a></li>
+					<li><a href="/e-commerce/schnittstellen-programmierung">Schnittstellen Programmierung</a></li>
+					<li><a href="/projektrettung">Projektrettung</a></li>
+					<li><a href="/projektuebernahme">Projektübernahme</a></li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- ── Interessiert? ── -->
+		<section class="contact-section">
+			<div class="contact-inner">
+				<h2 class="contact-headline">Interessiert?</h2>
+				{formStatus === "success" ? (
+					<p class="form-success">{formMessage}</p>
+				) : (
+					<form method="POST" class="contact-form">
+						{formStatus === "error" && <p class="form-error">{formMessage}</p>}
+						<div class="form-row">
+							<input type="text" name="name" required placeholder="Name" />
+							<input type="email" name="email" required placeholder="E-Mail-Adresse" />
+						</div>
+						<textarea name="message" required rows="5" placeholder="Nachricht"></textarea>
+						<button type="submit" class="form-submit">Absenden</button>
+					</form>
+				)}
+			</div>
+		</section>
+
+		<!-- ── SEO Text ── -->
+		<section class="seo-section">
+			<div class="seo-inner">
+
+				<h2 class="color-cyan">E-Commerce – zeitgemäße Geschäftsprozesse der Digitalisierung</h2>
+				<p>Mit der Digitalisierung in Unternehmen sind auch die Tools für einen erfolgreichen E-Commerce komplexer geworden. Die Hob by Horse GmbH verwendet diese Tools für innovative digital Konzepte, bei denen nicht das präsentierte Unternehmen, sondern dessen Zielgruppe im Fokus steht. Für unsere modernen Entwicklungen wurden wir bereits mehrfach ausgezeichnet.</p>
+
+				<h2 class="color-pink">Hob by Horse GmbH für 360° digital customer experience</h2>
+				<p>Viele Unternehmen arbeiten ausschließlich über E-Commerce. Andere kombinieren Ihre Geschäftstätigkeit vor Ort mit einer Online-Erweiterung. Für beide entwickeln wir passende Strategien für digitale Projekte. Wir nutzen alle gängigen Analyseverfahren und bringen uns mit langjährigem Knowhow im digitalen Consulting in Ihr Projekt ein.</p>
+				<p>Themenschwerpunkte unserer Arbeit für Ihren elektronischen Vorsprung sind Zielgruppen- und Prozessanalyse, Persona-Entwicklung, Anforderungsmanagement und die digitale Vermarktungskonzeption. Sie werden in Impuls-Workshops darauf geschult, Ihre eigene Kreativität mit in die Prozessentwicklung einzubringen. So schaffen wir am Ende eine Anlaufstelle, zu der Ihre Zielgruppe gerne immer wieder kommt. Weitere Hob by Horse Themen sind User Stories, Usability Consulting und UX Testing.</p>
+
+				<h2 class="color-yellow">E-Commerce als Zentrum unserer Tätigkeit</h2>
+				<p>Ziel aller Entwicklungen für den E-Commerce ist das Erschaffen von einzigartigen Onlineerlebnissen für Ihre Zielgruppe. Dafür arbeitet die Hob by Horse GmbH seit Jahren erfolgreich mit dem Shopsystem Shopware 6. Diese System-Software erlaubt die Programmierung von Schnittstellen, die Projektrettung und -übernahme ohne Datenverluste und in kurzer Entwicklungszeit.</p>
+				<p>Ebenso können wir damit eine Konzeption erstellen und Ihren Support kundenfreundlich gestalten. Welche Shopware wir für Ihr Unternehmen verwenden, hängt von Ihrer Unternehmensgröße, den Budgetvorstellungen und den Anforderungen an Funktionen ab. Sie können Ihren E-Commerce mit Shopware Enterprise oder Shopware Professional aufbauen und organisieren. Gerne beraten wir Sie zu den Unterschieden und zeigen Ihnen alle Möglichkeiten des einen sowie anderen Systems.</p>
+
+				<h2 class="color-orange">Bisherige Auszeichnungen der Hob by Horse GmbH</h2>
+				<p>Seit Jahren erfolgreich betreuen wir Großkunden wie RedBull, Amor, Tetra und viele weitere. Sie alle profitieren davon, dass wir ständig am Puls der Zeit arbeiten. Was neu auf den Markt kommt, analysieren wir genau und binden es – sofern für unsere Vorstellungen ausreichend innovativ – in unsere Entwicklungsarbeit für den E-Commerce ein.</p>
+				<p>Für unsere Arbeit am Puls der Zeit und Kunden erhielten wir bereits den „Shop Usability Award" des IDZB für überzeugende Nutzerorientierung und herausragende Designqualität. Dass wir User Experience in der Praxis zu einem beliebten virtuellen Erlebnis gestalten, beweist unser Ranking 2014 im Wettbewerb „Website of the Year". Unter allen Mitbewerbern schafften es unsere Präsentationen bis ins Finale.</p>
+				<p>Natürlich ruhen wir uns auf solchen Erfolgen nicht aus. Im Interesse unserer E-Commerce-Kunden sind wir weiter auf der Suche nach Kundennähe mit virtuellen Innovationen. Ihr Geschäftserfolg ist unser Ansporn, immer weiter ein Stück über die eigentlichen Möglichkeiten hinauszugehen. Dazu gehört es auch, Ihr Shopsystem bei Veränderungen im Nutzerverhalten und technischen Neuerungen jederzeit auf dem Laufenden zu halten.</p>
+
+				<h2 class="color-purple">Ihr E-Commerce Partner für nachhaltiges Wachstum</h2>
+				<p>Sie möchten neu im E-Commerce einsteigen, Ihr Unternehmen digitalisieren oder wünschen sich moderne Designs für bessere customer experiences? Rufen Sie am besten gleich bei der Hob by Horse GmbH an oder beschreiben Ihre Vorstellungen kurz in einer E-Mail! Als Experten für den E-Commerce mit Shopware 6 stehen wir Ihrem Geschäftserfolg ab der Erstberatung bis zur langfristigen Website-Betreuung gerne zur Seite.</p>
+
+			</div>
+		</section>
+
+	</div>
+</Base>
+
+<style>
+	.ecommerce-page {
+		background: #1a1a1a;
+		color: #ffffff;
+		min-height: 100vh;
+	}
+
+	/* ── Hero ── */
+	.hero {
+		padding-top: var(--header-height);
+		border-bottom: 1px solid rgba(255,255,255,0.08);
+	}
+
+	.hero-inner {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: var(--spacing-4xl) var(--spacing-xl);
+	}
+
+	.hero-h1 {
+		font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+		font-weight: 800;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		color: #06B6D4;
+		margin-bottom: var(--spacing-xl);
+	}
+
+	.hero-body {
+		font-size: var(--font-size-lg);
+		color: #ffffff;
+		line-height: 1.75;
+		margin-bottom: var(--spacing-sm);
+		max-width: 720px;
+	}
+
+	.hero-sub {
+		font-size: var(--font-size-lg);
+		color: #E7007F;
+		font-weight: 500;
+		margin-bottom: var(--spacing-2xl);
+	}
+
+	.hero-badges {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+		flex-wrap: wrap;
+		margin-top: var(--spacing-2xl);
+	}
+
+	.badge-img {
+		height: 90px;
+		width: auto;
+		object-fit: contain;
+		display: block;
+		flex-shrink: 0;
+	}
+
+	/* ── Leistungen ── */
+	.leistungen-section { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+	.leistungen-inner {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-3xl) var(--spacing-xl);
+	}
+
+	.leistungen-headline {
+		font-size: 0.875rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		color: #EAB308;
+		margin-bottom: var(--spacing-xl);
+		text-align: center;
+	}
+
+	.leistungen-list {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1px;
+		background: rgba(255,255,255,0.06);
+	}
+
+	.leistungen-list li {
+		background: #1a1a1a;
+		padding: var(--spacing-lg) var(--spacing-xl);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		color: #ffffff;
+		flex: 1 0 200px;
+		border: 1px solid rgba(255,255,255,0.06);
+		transition: background var(--transition-fast), color var(--transition-fast);
+	}
+
+	.leistungen-list li:hover { background: rgba(255,255,255,0.06); color: #06B6D4; }
+	.leistungen-list a { text-decoration: none; color: inherit; display: block; }
+
+	/* ── Contact ── */
+	.contact-section { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+	.contact-inner { max-width: 720px; margin: 0 auto; padding: var(--spacing-3xl) var(--spacing-xl); }
+
+	.contact-headline { font-size: var(--font-size-2xl); font-weight: 700; color: #E7007F; margin-bottom: var(--spacing-2xl); }
+
+	.contact-form { display: flex; flex-direction: column; gap: var(--spacing-md); }
+
+	.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
+
+	.contact-form input,
+	.contact-form textarea {
+		padding: var(--spacing-md);
+		font-family: inherit;
+		font-size: var(--font-size-base);
+		color: #ffffff;
+		background: rgba(255,255,255,0.06);
+		border: 1px solid rgba(255,255,255,0.12);
+		transition: border-color var(--transition-fast);
+		-webkit-appearance: none;
+	}
+
+	.contact-form input::placeholder,
+	.contact-form textarea::placeholder { color: #ffffff; }
+
+	.contact-form input:focus,
+	.contact-form textarea:focus { outline: none; border-color: #06B6D4; }
+
+	.contact-form textarea { resize: vertical; min-height: 130px; }
+
+	.form-submit {
+		align-self: flex-start;
+		padding: var(--spacing-md) var(--spacing-2xl);
+		font-family: inherit;
+		font-size: var(--font-size-sm);
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		color: #ffffff;
+		background: #E7007F;
+		border: none;
+		cursor: pointer;
+		transition: opacity var(--transition-fast);
+	}
+
+	.form-submit:hover { opacity: 0.85; }
+
+	.form-error { padding: var(--spacing-md); background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #fca5a5; font-size: var(--font-size-sm); }
+	.form-success { font-size: var(--font-size-lg); color: #06B6D4; padding: var(--spacing-xl) 0; }
+
+	/* ── SEO ── */
+	.seo-section { border-top: 1px solid rgba(255,255,255,0.08); }
+
+	.seo-inner {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-4xl) var(--spacing-xl);
+		columns: 2;
+		column-gap: 4rem;
+	}
+
+	.seo-inner h2 { font-size: 1.0625rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; break-after: avoid; line-height: 1.35; }
+	.seo-inner h2:first-child { margin-top: 0; }
+
+	.color-cyan   { color: #06B6D4; }
+	.color-pink   { color: #E7007F; }
+	.color-yellow { color: #EAB308; }
+	.color-orange { color: #F97316; }
+	.color-purple { color: #A855F7; }
+
+	.seo-inner p { font-size: 0.9375rem; color: #ffffff; line-height: 1.75; margin-bottom: 1rem; }
+
+	@media (max-width: 1024px) { .seo-inner { columns: 1; } }
+	@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+</style>

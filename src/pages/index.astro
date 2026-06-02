@@ -1,0 +1,273 @@
+---
+import Base from "../layouts/Base.astro";
+
+let formStatus: "idle" | "success" | "error" = "idle";
+let formMessage = "";
+
+if (Astro.request.method === "POST") {
+	try {
+		const data = await Astro.request.formData();
+		const name = data.get("name")?.toString() || "";
+		const email = data.get("email")?.toString() || "";
+		const message = data.get("message")?.toString() || "";
+		if (!name || !email || !message) {
+			formStatus = "error"; formMessage = "Bitte fülle alle Felder aus.";
+		} else if (!email.includes("@")) {
+			formStatus = "error"; formMessage = "Bitte gib eine gültige E-Mail-Adresse ein.";
+		} else {
+			formStatus = "success"; formMessage = "Danke! Wir melden uns in Kürze.";
+		}
+	} catch {
+		formStatus = "error"; formMessage = "Ein Fehler ist aufgetreten.";
+	}
+}
+
+const PROJECTS = [
+	{
+		slug: "alpha-industries",
+		title: "Alpha Industries",
+		color: "#0000CD",
+		img: "/images/alphamu-3000x3000-1-1536x1536-1.webp",
+	},
+	{
+		slug: "coded-in-germany",
+		title: "Coded in Germany",
+		color: "#FF1493",
+		img: "/images/Coded-In-Germany-1-scaled.png",
+	},
+	{
+		slug: "bvb",
+		title: "BVB",
+		color: "#FFD700",
+		img: "/images/bvbmu_new-scaled.jpg",
+	},
+	{
+		slug: "w-weitz",
+		title: "W. Weitz GmbH",
+		color: "#1a6b2e",
+		img: "/images/weitzmu.webp",
+	},
+	{
+		slug: "babor",
+		title: "Babor",
+		color: "#FF69B4",
+		img: "/images/babormu_new-scaled.jpg",
+	},
+	{
+		slug: "iris-von-arnim",
+		title: "Iris von Arnim",
+		color: "#FFB6C1",
+		img: "/images/Iris-Von-Arnim.jpg-scaled.jpg",
+	},
+	{
+		slug: "lavera",
+		title: "Lavera",
+		color: "#86EFAC",
+		img: "/images/Lavera-scaled.jpg",
+	},
+	{
+		slug: "lt",
+		title: "L&T",
+		color: "#60A5FA",
+		img: "/images/LT-2025.gif",
+	},
+	{
+		slug: "rasch",
+		title: "Rasch GmbH",
+		color: "#F97316",
+		img: "/images/raschmu_new-scaled.jpg",
+	},
+	{
+		slug: "e3dc",
+		title: "E3DC",
+		color: "#10B981",
+		img: "/images/E3DC_2025-scaled.jpg",
+	},
+	{
+		slug: "the-aiconist",
+		title: "The Aiconist",
+		color: "#F59E0B",
+		img: "/images/theaiconist_2025-scaled.jpg",
+	},
+	{
+		slug: "bizlink",
+		title: "BizLink Industry Germany",
+		color: "#E7007F",
+		img: "/images/bizlink_2025-scaled.jpg",
+	},
+	{
+		slug: "bruno-banani",
+		title: "Bruno Banani",
+		color: "#FF6B00",
+		img: "/images/BRUNO-BANANI_2025-scaled.jpg",
+	},
+	{
+		slug: "true-feed",
+		title: "True Feed GmbH",
+		color: "#84CC16",
+		img: "/images/feedmeat_2025-scaled.jpg",
+	},
+];
+---
+
+<Base>
+	<section class="portfolio">
+		<div class="portfolio-grid">
+			{PROJECTS.map((p) => (
+				<a
+					href={`/work/${p.slug}`}
+					class="tile"
+					style={`background-color:${p.color};${p.img ? `background-image:url('${p.img}');background-size:cover;background-position:center;` : ""}`}
+				>
+					<div class="tile-overlay">
+						<h2 class="tile-title">{p.title}</h2>
+					</div>
+				</a>
+			))}
+		</div>
+	</section>
+
+	<section class="contact-section" id="contact">
+		<div class="contact-inner">
+			<div class="contact-text">
+				<h2>Lass uns sprechen.</h2>
+				<p>Du hast ein Projekt oder eine Frage? Wir freuen uns von dir zu hören.</p>
+				<div class="contact-details">
+					<div class="contact-detail">
+						<strong>E-Mail</strong>
+						<a href="mailto:info@hob-by-horse.de">info@hob-by-horse.de</a>
+					</div>
+					<div class="contact-detail">
+						<strong>Hamburg</strong>
+						<span>Große Bleichen 1-3, 20354 Hamburg</span>
+					</div>
+					<div class="contact-detail">
+						<strong>Osnabrück</strong>
+						<span>Natruper Straße 14, 49076 Osnabrück</span>
+					</div>
+				</div>
+			</div>
+			<div class="contact-form-wrapper">
+				{formStatus === "success" ? (
+					<div class="form-success"><p>{formMessage}</p></div>
+				) : (
+					<form method="POST" class="contact-form" action="#contact">
+						{formStatus === "error" && <div class="form-error"><p>{formMessage}</p></div>}
+						<div class="form-row">
+							<div class="form-field">
+								<label for="name">Name</label>
+								<input type="text" id="name" name="name" required placeholder="Dein Name" />
+							</div>
+							<div class="form-field">
+								<label for="email">E-Mail</label>
+								<input type="email" id="email" name="email" required placeholder="deine@email.de" />
+							</div>
+						</div>
+						<div class="form-field">
+							<label for="message">Nachricht</label>
+							<textarea id="message" name="message" required rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
+						</div>
+						<button type="submit" class="form-submit">Nachricht senden</button>
+					</form>
+				)}
+			</div>
+		</div>
+	</section>
+</Base>
+
+<style>
+	/* ── Grid ── */
+	.portfolio { width: 100%; }
+
+	.portfolio-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 3px;
+		background: #111;
+	}
+
+	.tile {
+		display: block;
+		position: relative;
+		aspect-ratio: 4 / 3;
+		background-size: cover;
+		background-position: center;
+		text-decoration: none;
+		overflow: hidden;
+	}
+
+	/* Hover overlay */
+	.tile-overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to top,
+			rgba(0, 0, 0, 0.72) 0%,
+			rgba(0, 0, 0, 0.2) 45%,
+			rgba(0, 0, 0, 0) 70%
+		);
+		display: flex;
+		align-items: flex-end;
+		padding: 1.75rem 2rem;
+		opacity: 0;
+		transform: translateY(6px);
+		transition: opacity 0.28s ease, transform 0.28s ease;
+	}
+
+	.tile:hover .tile-overlay {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.tile:hover {
+		background-size: 106%;
+	}
+
+	.tile-title {
+		font-size: clamp(1rem, 2vw, 1.4rem);
+		font-weight: 700;
+		color: #fff;
+		line-height: 1.2;
+	}
+
+	/* ── Contact ── */
+	.contact-section { background: var(--color-text); color: var(--color-bg); }
+
+	.contact-inner {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-4xl) var(--spacing-xl);
+		display: grid;
+		grid-template-columns: 1fr 1.5fr;
+		gap: var(--spacing-4xl);
+		align-items: start;
+	}
+
+	.contact-text h2 { font-size: var(--font-size-3xl); font-weight: 700; color: #fff; margin-bottom: var(--spacing-md); }
+	.contact-text > p { font-size: var(--font-size-lg); color: #ffffff; margin-bottom: var(--spacing-2xl); line-height: 1.6; }
+
+	.contact-details { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+	.contact-detail { display: flex; flex-direction: column; gap: 2px; }
+	.contact-detail strong { font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: .1em; color: #ffffff; }
+	.contact-detail span, .contact-detail a { font-size: var(--font-size-base); color: #ffffff; text-decoration: none; }
+	.contact-detail a:hover { color: #fff; }
+
+	.contact-form { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+	.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); }
+	.form-field { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+	.form-field label { font-size: var(--font-size-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: #ffffff; }
+	.form-field input, .form-field textarea { padding: var(--spacing-md); font-family: inherit; font-size: var(--font-size-base); color: var(--color-text); background: var(--color-bg); border: 1px solid transparent; transition: border-color var(--transition-fast); -webkit-appearance: none; }
+	.form-field input:focus, .form-field textarea:focus { outline: none; border-color: #ffffff; }
+	.form-field textarea { resize: vertical; min-height: 140px; }
+	.form-submit { align-self: flex-start; padding: var(--spacing-md) var(--spacing-2xl); font-family: inherit; font-size: var(--font-size-sm); font-weight: 600; letter-spacing: .04em; color: var(--color-text); background: var(--color-bg); border: none; cursor: pointer; transition: background var(--transition-fast); }
+	.form-submit:hover { background: #fff; }
+	.form-error { padding: var(--spacing-md); background: rgba(239,68,68,.15); border: 1px solid rgba(239,68,68,.4); color: #fca5a5; font-size: var(--font-size-sm); }
+	.form-success { padding: var(--spacing-2xl); background: rgba(255,255,255,.08); color: #ffffff; font-size: var(--font-size-lg); }
+
+	@media (max-width: 1024px) { .contact-inner { grid-template-columns: 1fr; gap: var(--spacing-2xl); } }
+	@media (max-width: 640px) {
+		.portfolio-grid { grid-template-columns: 1fr; }
+		.form-row { grid-template-columns: 1fr; }
+		.contact-text h2 { font-size: var(--font-size-2xl); }
+	}
+</style>

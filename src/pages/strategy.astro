@@ -1,0 +1,369 @@
+---
+import Base from "../layouts/Base.astro";
+
+let formStatus: "idle" | "success" | "error" = "idle";
+let formMessage = "";
+
+if (Astro.request.method === "POST") {
+	try {
+		const data = await Astro.request.formData();
+		const name = data.get("name")?.toString() || "";
+		const email = data.get("email")?.toString() || "";
+		const message = data.get("message")?.toString() || "";
+		if (!name || !email || !message) {
+			formStatus = "error"; formMessage = "Bitte fülle alle Felder aus.";
+		} else if (!email.includes("@")) {
+			formStatus = "error"; formMessage = "Bitte gib eine gültige E-Mail-Adresse ein.";
+		} else {
+			formStatus = "success"; formMessage = "Danke! Wir melden uns in Kürze.";
+		}
+	} catch {
+		formStatus = "error"; formMessage = "Ein Fehler ist aufgetreten.";
+	}
+}
+---
+
+<Base
+	title="Strategy"
+	description="Strategie für wegweisende Webentwicklungen von Onlineshops — digitales Consulting von Hob by Horse."
+>
+	<div class="strategy-page">
+
+		<!-- ── Hero ── -->
+		<section class="hero">
+			<div class="hero-inner">
+				<h1 class="hero-h1">Wir wissen sehr viel!</h1>
+				<h2 class="hero-h2">Und wir geben unser Wissen gerne weiter.</h2>
+				<p class="hero-body">
+					Digitale Transformation, Customer Experience oder auch der digitale Marken-Launch.
+					Wir entwickeln deine Strategie für dein digitales Projekt. Auf Basis verschiedener
+					Analyseverfahren und unserer langjährigen Erfahrung im digitalen Consulting
+					konzipieren wir individuelle Lösungen für jegliche digitale Herausforderung.
+				</p>
+			</div>
+		</section>
+
+		<!-- ── Leistungen ── -->
+		<section class="leistungen-section">
+			<div class="leistungen-inner">
+				<h2 class="leistungen-headline">Unsere Leistungen</h2>
+				<ul class="leistungen-list">
+					<li><a href="/strategy/zielgruppenanalyse">Zielgruppenanalyse</a></li>
+					<li><a href="/strategy/persona-entwicklung">Persona Entwicklung</a></li>
+					<li><a href="/strategy/user-stories">User Stories</a></li>
+					<li><a href="/strategy/usability-consulting">Usability Consulting</a></li>
+					<li><a href="/strategy/ux-testing">UX Testing</a></li>
+					<li><a href="/strategy/impuls-workshops">Impuls Workshops</a></li>
+					<li><a href="/strategy/anforderungsmanagement">Anforderungsmanagement</a></li>
+					<li><a href="/strategy/speaker">Speaker</a></li>
+					<li><a href="/strategy/prozessanalyse">Prozessanalyse</a></li>
+					<li><a href="/strategy/digitale-vermarktungskonzeption">Digitale Vermarktungskonzeption</a></li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- ── Interessiert? ── -->
+		<section class="contact-section">
+			<div class="contact-inner">
+				<h2 class="contact-headline">Interessiert?</h2>
+				{formStatus === "success" ? (
+					<p class="form-success">{formMessage}</p>
+				) : (
+					<form method="POST" class="contact-form">
+						{formStatus === "error" && <p class="form-error">{formMessage}</p>}
+						<div class="form-row">
+							<input type="text" name="name" required placeholder="Name" />
+							<input type="email" name="email" required placeholder="E-Mail-Adresse" />
+						</div>
+						<textarea name="message" required rows="5" placeholder="Nachricht"></textarea>
+						<button type="submit" class="form-submit">Absenden</button>
+					</form>
+				)}
+			</div>
+		</section>
+
+		<!-- ── SEO Text ── -->
+		<section class="seo-section">
+			<div class="seo-inner">
+
+				<h2 class="color-cyan">Strategie für wegweisende Webentwicklungen von Onlineshops</h2>
+				<p>Kein Projekt kann ohne klare Strategie gelingen. Ihr Geschäftsmodell machen wir zu unserer Strategie, indem wir mit Werkzeugen zur Analyse den Ist-Zustand bestimmen und von hier zum Ziel Ihres Onlineshops arbeiten. Auf dem Weg dort hin nutzen wir die Features des Shopsystems Shopware 6 und weitere Software zur strategischen Ausrichtung in Ihrem Marktsegment.</p>
+
+				<h2 class="color-pink">Strategie gut planen und mit der Erfahrung von Hob by Horse an Zielgruppen ausrichten</h2>
+				<p>Vorbereitung ist die halbe Projektarbeit. Also setzen wir uns beim digitalen Consulting mit Ihnen zusammen und definieren Ihre Meilensteine. Daraus entsteht die Strategie mit individuellen Lösungen zur Funktionalität Ihres Onlineshops, gestalterischen Details und kurzfristigen sowie langfristigen Marketingkampagnen.</p>
+				<p>Aus Ihrer vorhandenen Kenntnis zu Zielgruppen, Verkaufserfolgen, eventuell saisonalen Schwankungen und Trendentwicklungen Ihrer Branche im E-Commerce werden diejenigen strategischen Definitionen, die wir als digitales Projekt schließlich mit moderner Software umsetzen. Sie als Shopbetreiber profitieren dabei von den neuesten, derzeit geläufigen Tools und einem hohen Grad der Automation. Ihre Zielgruppen erwartet ein Einkaufserlebnis, das so individuell wie möglich auf ihre Bedürfnisse zugeschnitten ist.</p>
+
+				<h2 class="color-yellow">Beispielleistungen einer funktionierenden Strategie für Onlineshops</h2>
+				<p>Zu einer guten Strategie gehören komplexe Bestandteile der Bedienung, Aktualisierung und Präsentation von Onlineshops. Dafür bietet Ihnen Hob by Horse mit Knowhow und Erfahrung folgende (beispielhaft erklärten) strategischen Leistungen an:</p>
+				<ul>
+					<li><strong>Zielgruppenanalyse:</strong> Als Teil der Marktanalyse gibt sie Einblick in die Gewohnheiten, Erwartungen und Bedürfnisse von Kunden Ihres Produkts oder Ihrer Dienstleistung in Ihrem speziellen Marktsegment oder auf einem breit aufgestellten Markt.</li>
+					<li><strong>Persona Entwicklung:</strong> Aus den Analysewerten können wir Merkmale Ihrer Zielgruppe charakterisieren und als Nutzermodell für Vorhersagen zum möglichen Erfolg der Marketingstrategie nutzen.</li>
+					<li><strong>User Stories:</strong> Hierbei wird der Mehrwert für Kunden Ihres Onlineshops als Erfahrungsbericht zu Software-Features aus dessen Sicht formuliert.</li>
+					<li><strong>UX Testing:</strong> Dies ist aktive Nutzerforschung zum Verhalten Ihrer Zielgruppe in Bezug auf die einzelnen Anwendungen und Services auf der Shopseite.</li>
+					<li><strong>Anforderungsmanagement:</strong> Dieses Element Ihrer Strategie im E-Commerce beschäftigt sich mit der Optimierung erfüllter Anforderungen entsprechend neuer oder veränderter Kundenbedürfnisse und Erwartungen an das Kauferlebnis in Ihrem Onlineshop.</li>
+					<li><strong>Prozessanalyse:</strong> Damit prüfen wir Prozesssteuerungskomponenten in Ihrem Onlineshop und nehmen an analysierten Schwachstellen gezielte Optimierungen vor.</li>
+					<li><strong>Digitale Vermarktungskonzeption:</strong> Der E-Commerce ist das beste Beispiel digitalisierter Geschäftsmodelle. Dementsprechend entwickeln wir Konzepte für am Kunden orientierte Verkaufsstrategien durch die Kombination kurzfristiger und langfristiger Marketingkampagnen.</li>
+				</ul>
+
+				<h2 class="color-orange">Strategie für Onlineshops mit hoher Branchenrelevanz</h2>
+				<p>Behörden und Institutionen brauchen für die digitale Vermarktung ihrer Produkte und Dienstleistungen eine andere Strategie als Unternehmen im Handel mit Lebensmitteln, Modeartikeln, Möbeln und Accessoires sowie sämtlichen Lifestyle-Produkten. Ein Betrieb der Hotellerie und Gastronomie muss sein Publikum anders erreichen als ein Lieferant von Produktionsteilen für die Automobilindustrie. Wir sehen Ihr Geschäftsmodell mit unserer Branchenerfahrung an der richtigen Stelle und positionieren Sie dort markant.</p>
+
+				<h2 class="color-purple">Vorteile der Strategieentwicklung von Hob by Horse für Ihre Zielgruppen</h2>
+				<p>Eine gute Strategie ist auch für den Verkaufserfolg im E-Commerce die halbe Miete. Zielgruppen im B2C nehmen sich nur Bruchteile für Sekunden, um das beste Suchergebnis zu finden und dem Linkangebot zu folgen. Möglicherweise bleiben Ihnen einige Augenblicke mehr, um relevante Informationen und damit die Kompetenz Ihres Geschäftsmodells der B2B-Zielgruppe von Fachhändlern zu vermitteln. Dafür nehmen wir uns vorab Analysezeit, um anschließend aus Ihrem Projekt eine für alle Zielgruppen attraktive Einkaufwelt zu erschaffen.</p>
+				<p>Sie haben schon eine Strategie oder möchten Ihren Onlineshop generell strategisch besser in Ihrer Branche positionieren? Dann freut sich Hob by Horse auf Ihren Anruf oder Ihre E-Mail! Gemeinsam finden wir die für Sie besten Lösungen für den digitalen Handel auf Zukunftsniveau.</p>
+
+			</div>
+		</section>
+
+	</div>
+</Base>
+
+<style>
+	.strategy-page {
+		background: #1a1a1a;
+		color: #ffffff;
+		min-height: 100vh;
+	}
+
+	/* ── Hero ── */
+	.hero {
+		padding-top: var(--header-height);
+		border-bottom: 1px solid rgba(255,255,255,0.08);
+	}
+
+	.hero-inner {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: var(--spacing-4xl) var(--spacing-xl);
+	}
+
+	.hero-h1 {
+		font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+		font-weight: 800;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		color: #06B6D4;
+		margin-bottom: var(--spacing-md);
+	}
+
+	.hero-h2 {
+		font-size: clamp(1.5rem, 3vw, 2.25rem);
+		font-weight: 700;
+		color: #E7007F;
+		margin-bottom: var(--spacing-xl);
+		line-height: 1.2;
+	}
+
+	.hero-body {
+		font-size: var(--font-size-lg);
+		color: #ffffff;
+		line-height: 1.75;
+		max-width: 720px;
+	}
+
+	/* ── Leistungen ── */
+	.leistungen-section {
+		border-bottom: 1px solid rgba(255,255,255,0.08);
+	}
+
+	.leistungen-inner {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-3xl) var(--spacing-xl);
+	}
+
+	.leistungen-headline {
+		font-size: 0.875rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		color: #EAB308;
+		margin-bottom: var(--spacing-xl);
+		text-align: center;
+	}
+
+	.leistungen-list {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1px;
+		background: rgba(255,255,255,0.06);
+	}
+
+	.leistungen-list li {
+		background: #1a1a1a;
+		padding: var(--spacing-lg) var(--spacing-xl);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		color: #ffffff;
+		flex: 1 0 200px;
+		border: 1px solid rgba(255,255,255,0.06);
+		transition: background var(--transition-fast), color var(--transition-fast);
+	}
+
+	.leistungen-list li:hover {
+		background: rgba(255,255,255,0.06);
+		color: #06B6D4;
+	}
+	.leistungen-list a { text-decoration: none; color: inherit; display: block; }
+
+	/* ── Contact form ── */
+	.contact-section {
+		border-bottom: 1px solid rgba(255,255,255,0.08);
+	}
+
+	.contact-inner {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: var(--spacing-3xl) var(--spacing-xl);
+	}
+
+	.contact-headline {
+		font-size: var(--font-size-2xl);
+		font-weight: 700;
+		color: #E7007F;
+		margin-bottom: var(--spacing-2xl);
+	}
+
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-md);
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-md);
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+		padding: var(--spacing-md);
+		font-family: inherit;
+		font-size: var(--font-size-base);
+		color: #ffffff;
+		background: rgba(255,255,255,0.06);
+		border: 1px solid rgba(255,255,255,0.12);
+		transition: border-color var(--transition-fast);
+		-webkit-appearance: none;
+	}
+
+	.contact-form input::placeholder,
+	.contact-form textarea::placeholder {
+		color: #ffffff;
+	}
+
+	.contact-form input:focus,
+	.contact-form textarea:focus {
+		outline: none;
+		border-color: #06B6D4;
+	}
+
+	.contact-form textarea {
+		resize: vertical;
+		min-height: 130px;
+	}
+
+	.form-submit {
+		align-self: flex-start;
+		padding: var(--spacing-md) var(--spacing-2xl);
+		font-family: inherit;
+		font-size: var(--font-size-sm);
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		color: #ffffff;
+		background: #E7007F;
+		border: none;
+		cursor: pointer;
+		transition: opacity var(--transition-fast);
+	}
+
+	.form-submit:hover { opacity: 0.85; }
+
+	.form-error {
+		padding: var(--spacing-md);
+		background: rgba(239,68,68,0.15);
+		border: 1px solid rgba(239,68,68,0.4);
+		color: #fca5a5;
+		font-size: var(--font-size-sm);
+	}
+
+	.form-success {
+		font-size: var(--font-size-lg);
+		color: #06B6D4;
+		padding: var(--spacing-xl) 0;
+	}
+
+	/* ── SEO section ── */
+	.seo-section {
+		border-top: 1px solid rgba(255,255,255,0.08);
+	}
+
+	.seo-inner {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-4xl) var(--spacing-xl);
+		columns: 2;
+		column-gap: 4rem;
+	}
+
+	.seo-inner h2 {
+		font-size: 1.0625rem;
+		font-weight: 700;
+		margin-top: 2rem;
+		margin-bottom: 0.75rem;
+		break-after: avoid;
+		line-height: 1.35;
+	}
+
+	.seo-inner h2:first-child { margin-top: 0; }
+
+	.color-cyan   { color: #06B6D4; }
+	.color-pink   { color: #E7007F; }
+	.color-yellow { color: #EAB308; }
+	.color-orange { color: #F97316; }
+	.color-purple { color: #A855F7; }
+
+	.seo-inner p {
+		font-size: 0.9375rem;
+		color: #ffffff;
+		line-height: 1.75;
+		margin-bottom: 1rem;
+	}
+
+	.seo-inner ul {
+		list-style: none;
+		padding: 0;
+		margin-bottom: 1rem;
+	}
+
+	.seo-inner ul li {
+		font-size: 0.9375rem;
+		color: #ffffff;
+		line-height: 1.7;
+		padding-left: 1.25rem;
+		position: relative;
+		margin-bottom: 0.6rem;
+	}
+
+	.seo-inner ul li::before {
+		content: "#";
+		position: absolute;
+		left: 0;
+		color: #E7007F;
+		font-weight: 700;
+	}
+
+	.seo-inner ul li strong {
+		color: #ffffff;
+	}
+
+	@media (max-width: 1024px) {
+		.seo-inner { columns: 1; }
+	}
+
+	@media (max-width: 640px) {
+		.form-row { grid-template-columns: 1fr; }
+	}
+</style>

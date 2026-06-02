@@ -1,0 +1,120 @@
+---
+import Base from "../../layouts/Base.astro";
+let formStatus: "idle" | "success" | "error" = "idle";
+let formMessage = "";
+if (Astro.request.method === "POST") {
+	try {
+		const data = await Astro.request.formData();
+		const n=data.get("name")?.toString()||"", e=data.get("email")?.toString()||"", m=data.get("message")?.toString()||"";
+		if (!n||!e||!m) { formStatus="error"; formMessage="Please fill in all fields."; }
+		else if (!e.includes("@")) { formStatus="error"; formMessage="Please enter a valid email address."; }
+		else { formStatus="success"; formMessage="Thank you! We'll be in touch soon."; }
+	} catch { formStatus="error"; formMessage="An error occurred."; }
+}
+---
+<Base title="Strategy" description="Strategy for pioneering online shop development — digital consulting by Hob by Horse.">
+	<div class="strategy-page">
+		<section class="hero">
+			<div class="hero-inner">
+				<h1 class="hero-h1">We know a lot!</h1>
+				<h2 class="hero-h2">And we love sharing our knowledge.</h2>
+				<p class="hero-body">Digital transformation, customer experience, or digital brand launches — we develop your strategy for your digital project. Based on various analysis methods and years of experience in digital consulting, we create individual solutions for any digital challenge.</p>
+			</div>
+		</section>
+		<section class="leistungen-section">
+			<div class="leistungen-inner">
+				<h2 class="leistungen-headline">Our Services</h2>
+				<ul class="leistungen-list">
+					<li><a href="/en/strategy/target-audience-analysis">Target Group Analysis</a></li>
+					<li><a href="/en/strategy/persona-development">Persona Development</a></li>
+					<li><a href="/en/strategy/user-stories">User Stories</a></li>
+					<li><a href="/en/strategy/usability-consulting">Usability Consulting</a></li>
+					<li><a href="/en/strategy/ux-testing">UX Testing</a></li>
+					<li><a href="/en/strategy/impuls-workshops">Impulse Workshops</a></li>
+					<li><a href="/en/strategy/requirements-management">Requirements Management</a></li>
+					<li><a href="/en/strategy/speaker">Speaker</a></li>
+					<li><a href="/en/strategy/process-analysis">Process Analysis</a></li>
+					<li><a href="/en/strategy/digital-marketing-conception">Digital Marketing Conception</a></li>
+				</ul>
+			</div>
+		</section>
+		<section class="contact-section">
+			<div class="contact-inner">
+				<h2 class="contact-headline">Interested?</h2>
+				{formStatus === "success" ? <p class="form-success">{formMessage}</p> : (
+					<form method="POST" class="contact-form">
+						{formStatus === "error" && <p class="form-error">{formMessage}</p>}
+						<div class="form-row">
+							<input type="text" name="name" required placeholder="Name" />
+							<input type="email" name="email" required placeholder="Email address" />
+						</div>
+						<textarea name="message" required rows="5" placeholder="Message"></textarea>
+						<button type="submit" class="form-submit">Submit</button>
+					</form>
+				)}
+			</div>
+		</section>
+		<section class="seo-section">
+			<div class="seo-inner">
+				<h2 class="color-cyan">Strategy for Pioneering Online Shop Development</h2>
+				<p>No project can succeed without a clear strategy. We make your business model our strategy by using analytical tools to determine the current state and work from there toward your online shop goals. We use Shopware 6 features and additional software for strategic alignment in your market segment.</p>
+				<h2 class="color-pink">Planning Strategy with Hob by Horse Expertise</h2>
+				<p>Preparation is half the battle. In digital consulting, we sit down with you to define your milestones. This creates a strategy with individual solutions for your online shop's functionality, design details, and short- and long-term marketing campaigns.</p>
+				<p>From your existing knowledge of target groups, sales successes, seasonal fluctuations, and industry trends, we create strategic definitions to implement as a digital project with modern software.</p>
+				<h2 class="color-yellow">Example Services of a Functioning Online Shop Strategy</h2>
+				<ul>
+					<li><strong>Target Group Analysis:</strong> Provides insights into the habits, expectations, and needs of customers in your market segment.</li>
+					<li><strong>Persona Development:</strong> We characterise features of your target group as user models for predicting marketing strategy success.</li>
+					<li><strong>User Stories:</strong> The added value for your online shop customers is formulated as an experience report from their perspective.</li>
+					<li><strong>UX Testing:</strong> Active user research into the behaviour of your target group regarding individual applications on the shop page.</li>
+					<li><strong>Requirements Management:</strong> Optimisation of fulfilled requirements according to new or changed customer needs.</li>
+					<li><strong>Process Analysis:</strong> We examine process control components in your online shop and make targeted optimisations at identified weak points.</li>
+					<li><strong>Digital Marketing Conception:</strong> We develop concepts for customer-oriented sales strategies through short- and long-term marketing campaigns.</li>
+				</ul>
+				<h2 class="color-orange">Strategy for Online Shops with High Industry Relevance</h2>
+				<p>Government agencies need a different strategy than companies in fashion or lifestyle retail. A hospitality business must reach its audience differently than an automotive parts supplier. We understand your business model and position you prominently in the right place.</p>
+				<h2 class="color-purple">Benefits of Hob by Horse Strategy Development</h2>
+				<p>A good strategy is half the work for e-commerce success. B2C target groups take only fractions of seconds to find the best search result and follow a link. For B2B, you may have a little more time to convey relevant information and competence to specialist dealers. Contact us — together we'll find the best solutions for digital commerce at the next level.</p>
+			</div>
+		</section>
+	</div>
+</Base>
+<style>
+	.strategy-page { background: #1a1a1a; color: #ffffff; min-height: 100vh; }
+	.hero { padding-top: var(--header-height); border-bottom: 1px solid rgba(255,255,255,0.08); }
+	.hero-inner { max-width: 900px; margin: 0 auto; padding: var(--spacing-4xl) var(--spacing-xl); }
+	.hero-h1 { font-size: clamp(2.2rem,4.5vw,3.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: #06B6D4; margin-bottom: var(--spacing-md); }
+	.hero-h2 { font-size: clamp(1.5rem,3vw,2.25rem); font-weight: 700; color: #E7007F; margin-bottom: var(--spacing-xl); line-height: 1.2; }
+	.hero-body { font-size: var(--font-size-lg); color: #ffffff; line-height: 1.75; }
+	.leistungen-section { border-bottom: 1px solid rgba(255,255,255,0.08); }
+	.leistungen-inner { max-width: var(--wide-width); margin: 0 auto; padding: var(--spacing-3xl) var(--spacing-xl); }
+	.leistungen-headline { font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #EAB308; margin-bottom: var(--spacing-xl); text-align: center; }
+	.leistungen-list { list-style: none; display: flex; flex-wrap: wrap; gap: 1px; background: rgba(255,255,255,0.06); }
+	.leistungen-list li { background: #1a1a1a; padding: var(--spacing-lg) var(--spacing-xl); font-size: var(--font-size-lg); font-weight: 600; color: #ffffff; flex: 1 0 200px; border: 1px solid rgba(255,255,255,0.06); }
+	.leistungen-list a { text-decoration: none; color: inherit; display: block; }
+	.contact-section { border-bottom: 1px solid rgba(255,255,255,0.08); }
+	.contact-inner { max-width: 720px; margin: 0 auto; padding: var(--spacing-3xl) var(--spacing-xl); }
+	.contact-headline { font-size: var(--font-size-2xl); font-weight: 700; color: #E7007F; margin-bottom: var(--spacing-2xl); }
+	.contact-form { display: flex; flex-direction: column; gap: var(--spacing-md); }
+	.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
+	.contact-form input, .contact-form textarea { padding: var(--spacing-md); font-family: inherit; font-size: var(--font-size-base); color: #ffffff; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); -webkit-appearance: none; }
+	.contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.35); }
+	.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: #06B6D4; }
+	.contact-form textarea { resize: vertical; min-height: 130px; }
+	.form-submit { align-self: flex-start; padding: var(--spacing-md) var(--spacing-2xl); font-family: inherit; font-size: var(--font-size-sm); font-weight: 700; color: #ffffff; background: #E7007F; border: none; cursor: pointer; }
+	.form-submit:hover { opacity: 0.85; }
+	.form-error { padding: var(--spacing-md); background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #fca5a5; font-size: var(--font-size-sm); }
+	.form-success { font-size: var(--font-size-lg); color: #06B6D4; padding: var(--spacing-xl) 0; }
+	.seo-section { border-top: 1px solid rgba(255,255,255,0.08); }
+	.seo-inner { max-width: var(--wide-width); margin: 0 auto; padding: var(--spacing-4xl) var(--spacing-xl); columns: 2; column-gap: 4rem; }
+	.seo-inner h2 { font-size: 1.0625rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; break-after: avoid; }
+	.seo-inner h2:first-child { margin-top: 0; }
+	.color-cyan { color: #06B6D4; } .color-pink { color: #E7007F; } .color-yellow { color: #EAB308; } .color-orange { color: #F97316; } .color-purple { color: #A855F7; }
+	.seo-inner p { font-size: 0.9375rem; color: #ffffff; line-height: 1.75; margin-bottom: 1rem; }
+	.seo-inner ul { list-style: none; padding: 0; margin-bottom: 1rem; }
+	.seo-inner ul li { font-size: 0.9375rem; color: #ffffff; line-height: 1.7; padding-left: 1.25rem; position: relative; margin-bottom: 0.6rem; }
+	.seo-inner ul li::before { content: "#"; position: absolute; left: 0; color: #E7007F; font-weight: 700; }
+	.seo-inner ul li strong { color: #ffffff; }
+	@media (max-width: 1024px) { .seo-inner { columns: 1; } }
+	@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+</style>

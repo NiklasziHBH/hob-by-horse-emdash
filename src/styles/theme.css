@@ -1,0 +1,155 @@
+/*
+  theme.css — Hob by Horse visual overrides.
+  Unlayered declarations here win over Base.astro's @layer base defaults.
+*/
+
+:root {
+	--color-bg: #f2f4f7;
+	--color-text: #111111;
+	--color-muted: #666666;
+	--color-border: #d8dce3;
+	--color-surface: #ffffff;
+	--color-accent: #E7007F;
+	--color-accent-muted: #ff4d72;
+	--wide-width: 1320px;
+	--radius: 0px;
+
+	/* Outfit as the universal sans stack */
+	--font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+/* ── Global dark SEO content block ── */
+.seo-content {
+	background: #1a1a1a;
+	color: #ffffff;
+}
+
+.seo-inner {
+	max-width: 1320px;
+	margin: 0 auto;
+	padding: 6rem 2rem;
+	columns: 2;
+	column-gap: 4rem;
+}
+
+.seo-inner h2 {
+	font-size: 1.125rem;
+	font-weight: 700;
+	color: #E7007F;
+	margin-top: 2rem;
+	margin-bottom: 0.75rem;
+	break-after: avoid;
+	column-span: none;
+}
+
+.seo-inner h2:first-child {
+	margin-top: 0;
+}
+
+.seo-inner p {
+	font-size: 0.9375rem;
+	color: rgba(255, 255, 255, 0.72);
+	line-height: 1.75;
+	margin-bottom: 1rem;
+}
+
+.seo-inner ul {
+	list-style: none;
+	padding: 0;
+	margin-bottom: 1rem;
+}
+
+.seo-inner ul li {
+	font-size: 0.9375rem;
+	color: rgba(255, 255, 255, 0.72);
+	line-height: 1.7;
+	padding-left: 1rem;
+	position: relative;
+	margin-bottom: 0.5rem;
+}
+
+.seo-inner ul li::before {
+	content: "—";
+	position: absolute;
+	left: 0;
+	color: #E7007F;
+}
+
+.seo-inner ul li strong {
+	color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 1024px) {
+	.seo-inner { columns: 1; }
+}
+
+/* ── Dark pages: override gray colors to white ── */
+.ecommerce-page,
+.web-page,
+.pim-page,
+.strategy-page,
+.performance-page,
+.jobs-page {
+	--color-muted: rgba(255, 255, 255, 0.65);
+	--color-text: #ffffff;
+	--color-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Any .seo-content dark block (used on about/contact pages) */
+.seo-content {
+	--color-muted: rgba(255, 255, 255, 0.65);
+}
+
+/* ── Center headings and paragraphs on all dark content pages ── */
+.ecommerce-page h1, .ecommerce-page h2, .ecommerce-page h3,
+.web-page h1, .web-page h2, .web-page h3,
+.pim-page h1, .pim-page h2, .pim-page h3,
+.strategy-page h1, .strategy-page h2, .strategy-page h3,
+.jobs-page h1, .jobs-page h2, .jobs-page h3 {
+	text-align: center;
+}
+
+.ecommerce-page p,
+.web-page p,
+.pim-page p,
+.strategy-page p,
+.jobs-page p {
+	text-align: center;
+	max-width: 680px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* SEO text blocks stay left-aligned (long multi-column prose) */
+.seo-section .seo-inner p,
+.seo-section .seo-inner h2 {
+	text-align: left;
+	max-width: none;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+
+/* ── Unified H1 size for all landing pages (.lp class) ── */
+.lp h1 {
+	font-size: 3rem;
+	line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+	.lp h1 {
+		font-size: 2rem;
+		line-height: 1.2;
+	}
+}
+
+/* Ensure Outfit applies everywhere, including elements with explicit font-family */
+body,
+button,
+input,
+textarea,
+select,
+h1, h2, h3, h4, h5, h6,
+nav, a {
+	font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+}

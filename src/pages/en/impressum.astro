@@ -1,0 +1,63 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+<Base title="Imprint" description="Legal notice — Hob by Horse GmbH">
+	<div class="legal-page">
+		<section class="hero">
+			<div class="hero-inner">
+				<p class="kicker">Legal</p>
+				<h1 class="hero-h1">Imprint</h1>
+			</div>
+		</section>
+		<div class="legal-content">
+
+			<h2>Information pursuant to § 5 TMG</h2>
+			<p><strong>Hob by Horse GmbH</strong><br />
+			Natruper Str. 14<br />
+			49076 Osnabrück<br />
+			Germany</p>
+
+			<h2>Managing Directors</h2>
+			<p>Sarah Lang, Niklas Zimmermann</p>
+
+			<h2>Contact</h2>
+			<p>Phone: <a href="tel:+4954160001537">+49 541 6001537</a><br />
+			Email: <a href="mailto:info@hob-by-horse.de">info@hob-by-horse.de</a></p>
+
+			<h2>Register entry</h2>
+			<p>Registered in the commercial register.<br />
+			Registration court: Amtsgericht Osnabrück<br />
+			Registration number: HRB214589</p>
+
+			<h2>VAT identification number</h2>
+			<p>VAT identification number pursuant to § 27a UStG:<br />
+			DE330298045</p>
+
+			<h2>Server location</h2>
+			<p>Federal Republic of Germany</p>
+
+			<h2>Responsible for content pursuant to § 55 Abs. 2 RStV</h2>
+			<p>Niklas Zimmermann<br />
+			Natruper Str. 14<br />
+			49076 Osnabrück</p>
+
+			<h2>Dispute resolution</h2>
+			<p>The European Commission provides a platform for online dispute resolution (OS): <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr</a>.</p>
+			<p>We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.</p>
+
+		</div>
+	</div>
+</Base>
+
+<style>
+	.legal-page { background: #1a1a1a; color: #ffffff; min-height: 100vh; }
+	.hero { padding-top: var(--header-height); border-bottom: 1px solid rgba(255,255,255,0.08); }
+	.hero-inner { max-width: 800px; margin: 0; padding: var(--spacing-3xl) var(--spacing-xl); }
+	.hero-h1 { font-size: clamp(2rem,4vw,3rem); font-weight: 800; line-height: 1.1; color: #06B6D4; text-align: left; }
+	.legal-content { max-width: 800px; margin: 0; padding: var(--spacing-3xl) var(--spacing-xl) var(--spacing-4xl); }
+	.legal-content h2 { font-size: var(--font-size-lg); font-weight: 700; color: #E7007F; margin-top: var(--spacing-2xl); margin-bottom: var(--spacing-sm); text-align: left !important; }
+	.legal-content h2:first-child { margin-top: 0; }
+	.legal-content p { color: rgba(255,255,255,0.8); line-height: 1.75; margin-bottom: var(--spacing-md); text-align: left !important; max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; }
+	.legal-content a { color: #06B6D4; text-decoration: none; }
+	.legal-content a:hover { text-decoration: underline; }
+</style>

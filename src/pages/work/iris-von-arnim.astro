@@ -1,0 +1,45 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+<Base title="Iris von Arnim" description="Iris von Arnim – Shopware 6 Commerce von Hob by Horse.">
+<div class="project-page">
+  <div class="hero-img"><img src="/images/Iris-Von-Arnim.jpg-scaled.jpg" alt="Iris von Arnim" /></div>
+  <div class="content">
+    <h1>Iris von Arnim</h1>
+    <div class="section">
+      <h4>Herausforderung</h4>
+      <p>Iris von Arnim steht für hanseatische Eleganz und höchste Handwerkskunst in der Luxusmode. Der bestehende Online-Store sollte nicht nur technisch modernisiert, sondern auch in seiner Gesamtheit neu gedacht werden – ein Shop, der die einzigartige Qualität und den Stil der Marke digital erlebbar macht und dabei eine exzellente Kauferfahrung bietet.</p>
+    </div>
+    <div class="section">
+      <h4>Umsetzung</h4>
+      <p>Hob by Horse realisierte einen neuen Shopware-6-Store für Iris von Arnim, der die Werte der Marke auf allen Ebenen widerspiegelt. Die technische Migration auf Shopware 6 wurde nahtlos durchgeführt, alle bestehenden Produkte, Kundendaten und Bestellhistorien wurden sicher überführt.</p>
+      <p>Das neue Frontend wurde mit besonderer Sorgfalt gestaltet: großzügige Weißräume, hochwertige Produktfotografie und eine intuitive Navigation schaffen ein Shopping-Erlebnis, das dem Premium-Anspruch der Marke entspricht. Zudem wurden verschiedene Schnittstellen integriert, um einen reibungslosen Betrieb des Online-Stores sicherzustellen.</p>
+    </div>
+    <div class="section">
+      <h3>Leistungen</h3>
+      <p class="leistungen">Commerce | Shopware 6 | Migration | Schnittstellenanbindung | Betreuung</p>
+    </div>
+    <div class="section cta-section">
+      <h3>This shop is Hob by Horse!</h3>
+      <p>Wir beraten dich gerne persönlich!</p>
+      <a href="/contact" class="cta-btn">Kontakt aufnehmen</a>
+    </div>
+  </div>
+</div>
+</Base>
+<style>
+.project-page{background:#1a1a1a;color:#fff;min-height:100vh}
+.hero-img{width:100%;padding-top:var(--header-height);background:#FFB6C1}
+.hero-img img{object-fit:contain;max-height:600px;width:100%;display:block}
+.content{max-width:800px;margin:0;padding:var(--spacing-4xl) var(--spacing-xl) var(--spacing-4xl) 40px}
+h1{font-size:3rem;font-weight:800;color:#ffffff;line-height:1.1;margin-bottom:var(--spacing-3xl);text-align:left}
+.section{margin-bottom:var(--spacing-3xl);border-top:1px solid rgba(255,255,255,0.1);padding-top:var(--spacing-xl)}
+h4{font-size:var(--font-size-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:#EAB308;margin-bottom:var(--spacing-lg)}
+h3{font-size:var(--font-size-xl);font-weight:700;color:#00b4d8;margin-bottom:var(--spacing-md);text-align:left!important}
+p{color:rgba(255,255,255,0.85);line-height:1.75;margin-bottom:var(--spacing-md);text-align:left!important;max-width:none!important;margin-left:0!important;margin-right:0!important}
+.leistungen{font-weight:600;color:#ffffff;letter-spacing:0.03em}
+.cta-section h3{color:#E7007F}
+.cta-btn{display:inline-block;margin-top:var(--spacing-md);padding:var(--spacing-md) var(--spacing-2xl);background:#E7007F;color:#ffffff;font-weight:700;font-size:var(--font-size-sm);text-decoration:none}
+.cta-btn:hover{opacity:0.85}
+@media(max-width:768px){h1{font-size:2rem;line-height:1.2}.content{padding-left:var(--spacing-xl)}}
+</style>
