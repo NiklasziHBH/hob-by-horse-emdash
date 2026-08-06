@@ -1,0 +1,64 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { getEmDashCollection } from "emdash";
+Astro.response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+Astro.response.headers.set('Surrogate-Control', 'no-store');
+let cmsPage: any = null;
+try { const { entries } = await getEmDashCollection("landing_page"); cmsPage = entries.find((pg: any) => pg.data.slug === "en/strategy/ai-consulting" && pg.data.language === "en") ?? null; } catch {}
+const heroSubtext = cmsPage?.data?.hero_subtext ?? "Artificial intelligence is changing how online shops work, use data, and interact with customers. Our AI Consulting gives you a practical assessment of where automation, smart data management, and AI-assisted development genuinely pay off in your digital project. The focus isn't the technology itself, but the measurable value it creates for your e-commerce business.";
+const leistungen: {label: string; url: string}[] = (() => {
+  try {
+    const raw = cmsPage?.data?.leistungen;
+    if (!raw) return [];
+    const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    return Array.isArray(parsed) ? parsed : [];
+  } catch { return []; }
+})();
+const sections: {headline: string; body: string}[] = (() => {
+  try {
+    const raw = cmsPage?.data?.sections;
+    if (!raw) return [];
+    const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    return Array.isArray(parsed) ? parsed : [];
+  } catch { return []; }
+})();
+
+const fallbackSections: {headline: string; body: string}[] = [
+  {
+    headline: "AI Consulting by Hob by Horse",
+    body: "AI Consulting starts with an honest stock-take: which processes in your online shop cost unnecessary time today, which data sits unstructured, and where could AI-driven features genuinely lift revenue or efficiency? From this analysis, we build a realistic roadmap together with you - from individual workshops through to full technical implementation with Shopware 6 and connected interfaces."
+  },
+  {
+    headline: "AI in Processes and Software Development",
+    body: "In process automation, AI noticeably reduces manual work in order processing, document recognition, and data maintenance. In development itself, we use AI-assisted tools to make builds faster, more testable, and easier to maintain - without cutting corners on quality or on the individual fit to your business model."
+  },
+  {
+    headline: "AI Use Cases with High Relevance for E-Commerce",
+    body: "AI shows its impact especially fast in online retail: automated product data enrichment and generation, AI-powered search and product recommendations, chatbots and voice support for customer service and sales, personalised shopping experiences, and the automated creation of product images and copy. We assess for each industry which of these building blocks create real value for your target audience."
+  },
+  {
+    headline: "Benefits of AI Consulting with Hob by Horse for Your Audiences",
+    body: "B2B buyers expect complete, up-to-date product data and fast answers - AI-driven data maintenance and support automation deliver exactly that. B2C audiences reward a personal, fast shopping experience shaped by smart recommendations and automated personalisation. Want to know where AI has the biggest lever in your online shop? Call Hob by Horse or send us an email - we will map out your AI roadmap together."
+  }
+];
+
+const displaySections = sections.length > 0 ? sections : fallbackSections;
+---
+<Base title="AI Consulting" description="AI Consulting by Hob by Horse: AI-driven process automation, development, and e-commerce use cases — advised in practice.">
+<div class="lp"><section class="hero"><div class="hi">
+<p class="kicker">{cmsPage?.data?.kicker ?? "Strategy"}</p>
+<h1>{cmsPage?.data?.hero_headline ?? "AI Consulting for Smart Processes, Development and E-Commerce"}</h1>
+<p>{heroSubtext}</p>
+</div></section>
+<div class="content">
+{displaySections.map((s, i) => (
+<div key={i}>
+<h2>{s.headline}</h2>
+<p>{s.body}</p>
+</div>
+))}
+</div></div>
+</Base>
+<style>
+.lp{background:#1a1a1a;color:#fff;min-height:100vh}.hero{padding-top:var(--header-height);border-bottom:1px solid rgba(255,255,255,.08)}.hi{max-width:800px;margin:0 auto;padding:var(--spacing-3xl) 40px}h1{font-size:clamp(1.6rem,3vw,2.5rem);font-weight:800;line-height:1.15;color:#00b4d8;margin-bottom:var(--spacing-lg);text-align:left}.hero p:not(.kicker),.content p:not(.kicker){color:rgba(255,255,255,.85);line-height:1.75;text-align:left!important;max-width:none!important;margin-left:0!important;margin-right:0!important;margin-bottom:var(--spacing-md)}.content{max-width:800px;margin:0 auto;padding:var(--spacing-3xl) 40px var(--spacing-4xl)}h2{font-size:var(--font-size-xl);font-weight:700;color:#E7007F;margin-top:var(--spacing-2xl);margin-bottom:var(--spacing-md);text-align:left!important}ul{list-style:none;padding:0;margin-bottom:var(--spacing-lg)}li{color:rgba(255,255,255,.85);line-height:1.7;padding-left:1.25rem;position:relative;margin-bottom:var(--spacing-md)}li::before{content:"#";position:absolute;left:0;color:#E7007F;font-weight:700}li strong{color:#fff}.content a{color:#00b4d8;text-decoration:none}.content a:hover{text-decoration:underline}em{font-style:italic;color:rgba(255,255,255,.7)}
+</style>

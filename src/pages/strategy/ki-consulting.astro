@@ -1,0 +1,64 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getEmDashCollection } from "emdash";
+Astro.response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+Astro.response.headers.set('Surrogate-Control', 'no-store');
+let cmsPage: any = null;
+try { const { entries } = await getEmDashCollection("landing_page"); cmsPage = entries.find((pg: any) => pg.data.slug === "strategy/ki-consulting" && pg.data.language === "de") ?? null; } catch {}
+const heroSubtext = cmsPage?.data?.hero_subtext ?? "Künstliche Intelligenz verändert, wie Onlineshops arbeiten, Daten nutzen und mit Kunden interagieren. Als KI Consulting bieten wir Ihnen eine praxisnahe Einschätzung, wo sich Automatisierung, smarte Datenpflege und KI-gestützte Entwicklung in Ihrem digitalen Projekt wirklich lohnen. Im Fokus steht dabei nicht die Technologie selbst, sondern der messbare Mehrwert für Ihren E-Commerce.";
+const leistungen: {label: string; url: string}[] = (() => {
+  try {
+    const raw = cmsPage?.data?.leistungen;
+    if (!raw) return [];
+    const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    return Array.isArray(parsed) ? parsed : [];
+  } catch { return []; }
+})();
+const sections: {headline: string; body: string}[] = (() => {
+  try {
+    const raw = cmsPage?.data?.sections;
+    if (!raw) return [];
+    const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    return Array.isArray(parsed) ? parsed : [];
+  } catch { return []; }
+})();
+
+const fallbackSections: {headline: string; body: string}[] = [
+  {
+    headline: "KI Consulting durch Hob by Horse",
+    body: "KI Consulting beginnt bei uns mit einer ehrlichen Bestandsaufnahme: Welche Prozesse in Ihrem Onlineshop kosten heute unnötig Zeit, welche Daten liegen unstrukturiert vor und wo könnten KI-gestützte Funktionen tatsächlich Umsatz oder Effizienz steigern? Aus dieser Analyse entwickeln wir gemeinsam mit Ihnen eine realistische Roadmap – von einzelnen Workshops bis zur vollständigen technischen Umsetzung mit Shopware 6 und angebundenen Schnittstellen."
+  },
+  {
+    headline: "KI in Prozessen und Softwareentwicklung",
+    body: "Bei der Prozessautomatisierung reduziert KI manuelle Arbeit in der Bestellabwicklung, Dokumentenerkennung und Datenpflege spürbar. In der Entwicklung selbst setzen wir KI-gestützte Werkzeuge ein, um Umsetzungen schneller, testbarer und wartbarer zu machen – ohne an Qualität oder individueller Anpassung an Ihr Geschäftsmodell zu sparen."
+  },
+  {
+    headline: "KI-Use-Cases mit hoher Relevanz für den E-Commerce",
+    body: "Besonders im Onlinehandel zeigt KI schnell Wirkung: automatisierte Produktdatenanreicherung und -generierung, KI-gestützte Suche und Produktempfehlungen, Chatbots und Voice-Support für Kundenservice und Vertrieb, personalisierte Einkaufserlebnisse sowie die automatisierte Erstellung von Produktbildern und -texten. Wir prüfen für jede Branche individuell, welche dieser Bausteine echten Mehrwert für Ihre Zielgruppe schaffen."
+  },
+  {
+    headline: "Vorteile von KI Consulting mit Hob by Horse für Ihre Zielgruppen",
+    body: "B2B-Fachkunden erwarten vollständige, aktuelle Produktdaten und schnelle Antworten – KI-gestützte Datenpflege und Support-Automatisierung liefern genau das. B2C-Zielgruppen honorieren ein persönliches, schnelles Einkaufserlebnis, das durch smarte Empfehlungen und automatisierte Personalisierung entsteht. Sie möchten wissen, wo KI in Ihrem Onlineshop den größten Hebel hat? Rufen Sie Hob by Horse an oder schreiben Sie uns eine E-Mail – wir erarbeiten gemeinsam Ihren KI-Fahrplan."
+  }
+];
+
+const displaySections = sections.length > 0 ? sections : fallbackSections;
+---
+<Base title="KI Consulting" description="KI Consulting von Hob by Horse: KI-gestützte Prozessautomatisierung, Entwicklung und Use Cases für den E-Commerce – praxisnah beraten.">
+<div class="lp"><section class="hero"><div class="hi">
+<p class="kicker">{cmsPage?.data?.kicker ?? "Strategy"}</p>
+<h1>{cmsPage?.data?.hero_headline ?? "KI Consulting für smarte Prozesse, Entwicklung und E-Commerce"}</h1>
+<p>{heroSubtext}</p>
+</div></section>
+<div class="content">
+{displaySections.map((s, i) => (
+<div key={i}>
+<h2>{s.headline}</h2>
+<p>{s.body}</p>
+</div>
+))}
+</div></div>
+</Base>
+<style>
+.lp{background:#1a1a1a;color:#fff;min-height:100vh}.hero{padding-top:var(--header-height);border-bottom:1px solid rgba(255,255,255,.08)}.hi{max-width:800px;margin:0 auto;padding:var(--spacing-3xl) 40px}h1{font-size:clamp(1.6rem,3vw,2.5rem);font-weight:800;line-height:1.15;color:#00b4d8;margin-bottom:var(--spacing-lg);text-align:left}.hero p:not(.kicker),.content p:not(.kicker){color:rgba(255,255,255,.85);line-height:1.75;text-align:left!important;max-width:none!important;margin-left:0!important;margin-right:0!important;margin-bottom:var(--spacing-md)}.content{max-width:800px;margin:0 auto;padding:var(--spacing-3xl) 40px var(--spacing-4xl)}h2{font-size:var(--font-size-xl);font-weight:700;color:#E7007F;margin-top:var(--spacing-2xl);margin-bottom:var(--spacing-md);text-align:left!important}ul{list-style:none;padding:0;margin-bottom:var(--spacing-lg)}li{color:rgba(255,255,255,.85);line-height:1.7;padding-left:1.25rem;position:relative;margin-bottom:var(--spacing-md)}li::before{content:"#";position:absolute;left:0;color:#E7007F;font-weight:700}li strong{color:#fff}.content a{color:#00b4d8;text-decoration:none}.content a:hover{text-decoration:underline}em{font-style:italic;color:rgba(255,255,255,.7)}
+</style>
